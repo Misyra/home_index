@@ -43,3 +43,7 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 ## 雨天相册
 
 新增洛茜与蓝发鱼尾女孩一起踩水花、共撑雨伞、放纸船的三张CG，保存于 dist/rain-cg-splash.png、dist/rain-cg-umbrella.png、dist/rain-cg-boats.png。与原有热茶CG一起分散摆在首屏人物周围，每张明信片都可点击独立放大查看。内置 image_gen 生成；完整最终提示词见 CG-PROMPTS.md。
+
+## 首页简化与背景互动
+
+明信片只显示图片，标题和说明保留在点击放大的窗口。背景增加远中近三层雨线、双层落地涟漪、流动雾光与光点，并适配昼夜主题。人物问候扩展为24条，打乱后逐条展示，一轮内不重复，跨轮避免紧邻重复；阅读时间延长至3.3秒。

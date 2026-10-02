@@ -12,8 +12,10 @@ const navigationObserver=new IntersectionObserver(entries=>{for(const entry of e
 document.querySelector('#year').textContent=new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Shanghai'}).format(new Date());
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');let effectsOn=true;try{effectsOn=localStorage.getItem('rainy-home-rain')!=='off';}catch{}
 const rainButton=document.querySelector('#rain-switch'),canvas=document.querySelector('#rain-canvas'),context=canvas.getContext('2d');let width=0,height=0,frame=0,lastTime=0;const drops=[],ripples=[];
-function resize(){width=innerWidth;height=innerHeight;const ratio=Math.min(devicePixelRatio||1,2);canvas.width=width*ratio;canvas.height=height*ratio;context.setTransform(ratio,0,0,ratio,0,0);drops.length=0;for(let i=0;i<Math.min(75,Math.round(width/20));i++)drops.push({x:Math.random()*width,y:Math.random()*height,speed:80+Math.random()*110,length:7+Math.random()*9});}
-function render(time){const dt=Math.min((time-lastTime)/1000,.04);lastTime=time;context.clearRect(0,0,width,height);context.lineWidth=1.5;context.strokeStyle='rgba(137,177,201,.25)';context.lineCap='round';for(const drop of drops){drop.y+=drop.speed*dt;drop.x-=drop.speed*dt*.12;if(drop.y>height){if(ripples.length<12)ripples.push({x:drop.x,y:height-15-Math.random()*40,age:0});drop.y=-20;drop.x=Math.random()*width;}context.beginPath();context.moveTo(drop.x,drop.y);context.lineTo(drop.x-2,drop.y+drop.length);context.stroke();}for(let i=ripples.length-1;i>=0;i--){const ripple=ripples[i];ripple.age+=dt;context.strokeStyle=`rgba(137,177,201,${Math.max(0,.22-ripple.age*.16)})`;context.beginPath();context.ellipse(ripple.x,ripple.y,4+ripple.age*21,1+ripple.age*5,0,0,Math.PI*2);context.stroke();if(ripple.age>1.4)ripples.splice(i,1);}frame=requestAnimationFrame(render);}
+function resize(){width=innerWidth;height=innerHeight;const ratio=Math.min(devicePixelRatio||1,2);canvas.width=width*ratio;canvas.height=height*ratio;context.setTransform(ratio,0,0,ratio,0,0);drops.length=0;ripples.length=0;for(let i=0;i<Math.min(90,Math.round(width/14));i++){const depth=i%3;drops.push({x:Math.random()*width,y:Math.random()*height,depth,speed:60+depth*55+Math.random()*40,length:5+depth*5+Math.random()*4});}}
+function render(time){const dt=Math.min((time-lastTime)/1000,.04);lastTime=time;context.clearRect(0,0,width,height);context.lineCap='round';const dark=document.documentElement.dataset.theme==='dark',rgb=dark?'171,207,236':'124,171,201';
+for(const drop of drops){drop.y+=drop.speed*dt;drop.x-=drop.speed*dt*.1;if(drop.y>height){if(ripples.length<20&&drop.depth>0)ripples.push({x:drop.x,y:height*(.74+Math.random()*.23),age:0,size:.7+Math.random()*.6});drop.y=-20;drop.x=Math.random()*width;}context.lineWidth=.65+drop.depth*.4;context.strokeStyle=`rgba(${rgb},${.1+drop.depth*.065})`;context.beginPath();context.moveTo(drop.x,drop.y);context.lineTo(drop.x-1-drop.depth,drop.y+drop.length);context.stroke();if(drop.depth===2){context.fillStyle=`rgba(${rgb},.2)`;context.beginPath();context.arc(drop.x-3,drop.y+drop.length,1.2,0,Math.PI*2);context.fill();}}
+for(let i=ripples.length-1;i>=0;i--){const ripple=ripples[i];ripple.age+=dt;context.lineWidth=1;for(let ring=0;ring<2;ring++){const age=ripple.age-ring*.18;if(age<0)continue;context.strokeStyle=`rgba(${rgb},${Math.max(0,.19-age*.12)*(ring?.55:1)})`;context.beginPath();context.ellipse(ripple.x,ripple.y,(4+age*24)*ripple.size,(1+age*5)*ripple.size,0,0,Math.PI*2);context.stroke();}if(ripple.age>1.65)ripples.splice(i,1);}frame=requestAnimationFrame(render);}
 function syncEffects(){if(!effectsOn||reducedMotion.matches)document.querySelector('#mascot-button').classList.remove('wiggle');document.body.classList.toggle('effects-paused',!effectsOn);rainButton.setAttribute('aria-pressed',String(effectsOn));cancelAnimationFrame(frame);frame=0;if(effectsOn&&!reducedMotion.matches&&!document.hidden){lastTime=performance.now();frame=requestAnimationFrame(render);}else context.clearRect(0,0,width,height);}
 resize();syncEffects();addEventListener('resize',resize);document.addEventListener('visibilitychange',syncEffects);reducedMotion.addEventListener('change',syncEffects);
 rainButton.addEventListener('click',()=>{effectsOn=!effectsOn;syncEffects();try{localStorage.setItem('rainy-home-rain',effectsOn?'on':'off');}catch{}});
@@ -28,10 +30,38 @@ document.addEventListener('pointerdown',event=>{if(event.isPrimary&&event.button
 document.addEventListener('click',event=>{if(event.detail===0&&event.target instanceof Element){const target=event.target.closest('button,a');if(target){const rect=target.getBoundingClientRect();clickBurst(rect.x+rect.width/2,rect.y+rect.height/2);}}});
 const greeting=document.querySelector('#greeting');let greetingTimer;
 function showGreeting(message){greeting.textContent=message;greeting.classList.add('show');clearTimeout(greetingTimer);greetingTimer=setTimeout(()=>greeting.classList.remove('show'),2400);}
+// 24条原创问候，打乱后逐条播放，一轮内不重复。
+const characterMessages=[
+'今天也要开心呀 ♡',
+'送你一朵不会淋湿的云 ☁',
+'滴答！很高兴遇见你 ♡',
+'雨声这么好听，再待一会儿吧。',
+'嘿！这把伞也有你的位置。',
+'今天的快乐，偷偷装进口袋啦。',
+'大肥鱼说，这个水洼归她啦！',
+'要不要和我们一起放纸船？',
+'啪嗒！刚才的水花像小星星。',
+'雨停之前，先收下一个好心情。',
+'别急，慢慢来就好。',
+'今天也辛苦啦，来躲一会儿雨。',
+'云朵正在帮我们把天空洗干净。',
+'这次踩水花，我一定不会输！',
+'暖暖的茶已经准备好啦。',
+'嘘，听见雨滴打招呼了吗？',
+'我的兜帽很暖，雨伞也很大。',
+'这只纸船，载着一个小愿望。',
+'再点一下？还有话想和你说。',
+'星星躲在云后，也在偷偷看你。',
+'能遇见你，今天的雨都变甜了。',
+'跟着滴答滴答，给心情放个假。',
+'大肥鱼的尾巴，又溅起水花啦！',
+'把烦恼放进纸船，送它漂远一点。'];
+let messageBag=[],lastMessage=-1;
+function nextCharacterMessage(){if(!messageBag.length){messageBag=characterMessages.map((_,i)=>i);for(let i=messageBag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[messageBag[i],messageBag[j]]=[messageBag[j],messageBag[i]];}if(messageBag.at(-1)===lastMessage)[messageBag[0],messageBag[messageBag.length-1]]=[messageBag[messageBag.length-1],messageBag[0]];}lastMessage=messageBag.pop();return characterMessages[lastMessage];}
 const poses=[{src:'rain-girl.png',alt:'Q版洛茜撑着蓝色小雨伞，微笑挥手'},{src:'rain-girl-happy.png',alt:'Q版洛茜撑着蓝色小雨伞，闭眼笑着比耶，轻轻抬起一条腿'}];
 let poseIndex=0,poseChanging=false;const mascotImage=document.querySelector('#mascot'),mascotButton=document.querySelector('#mascot-button');
 const posePreload=new Image();posePreload.src=poses[1].src;
-mascotButton.addEventListener('click',()=>{if(poseChanging)return;poseChanging=true;const next=(poseIndex+1)%poses.length;const image=new Image();image.onload=()=>{mascotButton.classList.add('pose-changing');setTimeout(()=>{poseIndex=next;mascotImage.src=poses[next].src;mascotImage.alt=poses[next].alt;mascotButton.classList.remove('pose-changing');if(effectsOn&&!reducedMotion.matches){mascotButton.classList.remove('wiggle');void mascotButton.offsetWidth;mascotButton.classList.add('wiggle');}showGreeting(['洛茜说：今天也要开心呀 ♡','送你一朵不会淋湿的云 ☁','滴答！很高兴遇见你 ♡'][Math.floor(Math.random()*3)]);poseChanging=false;},effectsOn&&!reducedMotion.matches?130:0);};image.onerror=()=>{poseChanging=false;showGreeting('图片加载慢了一点，再试一次吧');};image.src=poses[next].src;});
+mascotButton.addEventListener('click',()=>{if(poseChanging)return;poseChanging=true;const next=(poseIndex+1)%poses.length;const image=new Image();image.onload=()=>{mascotButton.classList.add('pose-changing');setTimeout(()=>{poseIndex=next;mascotImage.src=poses[next].src;mascotImage.alt=poses[next].alt;mascotButton.classList.remove('pose-changing');if(effectsOn&&!reducedMotion.matches){mascotButton.classList.remove('wiggle');void mascotButton.offsetWidth;mascotButton.classList.add('wiggle');}showGreeting(nextCharacterMessage());poseChanging=false;},effectsOn&&!reducedMotion.matches?130:0);};image.onerror=()=>{poseChanging=false;showGreeting('图片加载慢了一点，再试一次吧');};image.src=poses[next].src;});
 mascotButton.addEventListener('animationend',event=>{if(event.animationName==='wiggle')mascotButton.classList.remove('wiggle');});
 const cgDialog=document.querySelector('#cg-dialog');
 const cgScenes=[
