@@ -24,6 +24,9 @@ for name in ['index.html','particles.html']:
   config=json.loads(''.join(p.config));ondemand={item['src'] for item in config['poses']+config['scenes']};assert all((d/n).is_file() for n in ondemand),'Missing character image';report[name]['characterAssets']={n:(d/n).stat().st_size for n in sorted(ondemand)}
  assert 'sound-button' not in h and 'AudioContext' not in (d/'scripts/site.js').read_text(encoding='utf-8')
  if name=='index.html':assert 'particle-data.js' not in h and 'portrait-particles' not in h and 'rossi-particle-portrait' not in h
+font_refs=re.findall(r'url\(["\']?(fonts/[^)"\']+)',(d/'typography.css').read_text(encoding='utf-8'))
+assert font_refs and all((d/n).is_file() for n in font_refs),'Missing local font'
+report['fontBytes']={n:(d/n).stat().st_size for n in font_refs}
 assets={p.name:p.stat().st_size for p in (d/'assets').glob('*')};report['assets']=assets;report['previousDirectBytes']=baseline['directBytes'];report['homeReductionPercent']=round((1-report['index.html']['directBytes']/baseline['directBytes'])*100,2)
 (r/'scripts/performance-result.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
 print(json.dumps({'previousDirectBytes':baseline['directBytes'],'homeDirectBytes':report['index.html']['directBytes'],'particleDirectBytes':report['particles.html']['directBytes'],'reductionPercent':report['homeReductionPercent'],'homeScripts':report['index.html']['scripts'],'assetBytes':assets},ensure_ascii=False))

@@ -1,9 +1,9 @@
 {
   "index.html": {
-    "directBytes": 528942,
+    "directBytes": 530069,
     "files": {
-      "./index.html": 21652,
-      "./particles.html": 9077,
+      "./index.html": 21697,
+      "./particles.html": 9122,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -29,7 +29,8 @@
       "scripts/pet.js": 2730,
       "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 51122
+      "style.css": 51122,
+      "typography.css": 1037
     },
     "scripts": [
       "scripts/site.js",
@@ -54,10 +55,10 @@
     }
   },
   "particles.html": {
-    "directBytes": 856054,
+    "directBytes": 857181,
     "files": {
-      "./index.html": 21652,
-      "./particles.html": 9077,
+      "./index.html": 21697,
+      "./particles.html": 9122,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
@@ -70,7 +71,8 @@
       "scripts/pet.js": 2730,
       "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 51122
+      "style.css": 51122,
+      "typography.css": 1037
     },
     "scripts": [
       "scripts/site.js",
@@ -80,6 +82,10 @@
       "scripts/particles.js",
       "scripts/pet.js"
     ]
+  },
+  "fontBytes": {
+    "fonts/fredoka-latin.woff2": 29732,
+    "fonts/noto-sans-sc-site.woff2": 135280
   },
   "assets": {
     "apple-touch-icon.png": 26125,
@@ -121,5 +127,5 @@
     "rossi-pose-rainbow.webp": 99182
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 96.81
+  "homeReductionPercent": 96.8
 }

@@ -56,3 +56,7 @@ npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地
 src/config/characters.ts 集中管理人物图片、场景和台词。主页人物按顺序循环五种动作，保留原24条问候，新动作使用场景专属台词。主页四张明信片打开相册；在相册点击大图、左右按钮、缩略图或按左右方向键切换七张CG，每张有三句不同台词，重复查看时轮换。图片载入成功后才一起更新图片、标题、台词，避免画面与内容错配。新大图与动作按需载入，原有CG均保留。
 
 新增插画与最终提示词见 NEW-CHARACTER-PROMPTS.md；scripts/optimize-new-characters.mjs 将新增原稿导出为WebP立绘、大图与缩略图。
+
+## 可爱字体
+
+全站使用与 UPXUU 参考站相同的 Fredoka + Noto Sans SC 组合；英文和数字圆润，中文保持清晰，标题700字重、导航600字重。字体本站托管，中文子集在本地生成，合计约165KB。字体来源、许可证及重新生成方法见 FONTS.md。
