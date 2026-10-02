@@ -1,13 +1,14 @@
 // 修改这个数组即可换成自己的博客、主页和常用链接。
 const bookmarks=[
-{name:'GitHub',description:'我的代码宇宙',url:'https://github.com/',icon:'🐙'},
-{name:'哔哩哔哩',description:'快乐放映室',url:'https://www.bilibili.com/',icon:'📺'},
-{name:'豆瓣',description:'书影音小森林',url:'https://www.douban.com/',icon:'🌱'},
-{name:'网易云音乐',description:'雨天的背景音乐',url:'https://music.163.com/',icon:'🎧'},
-{name:'Notion',description:'灵感小本本',url:'https://www.notion.so/',icon:'📓'},
-{name:'花瓣',description:'收集一点点美好',url:'https://huaban.com/',icon:'🎨'}];
+{name:'GitHub',description:'代码、项目与开源灵感',url:'https://github.com/',icon:'icons/github.svg',color:'36,41,47'},
+{name:'哔哩哔哩',description:'视频与快乐补给',url:'https://www.bilibili.com/',icon:'icons/bilibili.svg',color:'234,114,154'},
+{name:'豆瓣',description:'书、电影与生活记录',url:'https://www.douban.com/',icon:'icons/douban.svg',color:'47,153,83'},
+{name:'网易云音乐',description:'给每个雨天配一首歌',url:'https://music.163.com/',icon:'icons/neteasecloudmusic.svg',color:'215,75,83'},
+{name:'Notion',description:'笔记、计划与小小想法',url:'https://www.notion.so/',icon:'icons/notion.svg',color:'60,64,69'},
+{name:'花瓣',description:'收藏设计与视觉灵感',url:'https://huaban.com/',icon:'icons/huaban.png',color:'222,67,98'}];
 const grid=document.querySelector('#link-grid');
-bookmarks.forEach((item,i)=>{const link=document.createElement('a');link.className='site-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.style.setProperty('--i',i);link.setAttribute('aria-label',`${item.name}，在新标签页打开`);const icon=document.createElement('span');icon.className='link-icon';icon.textContent=item.icon;icon.setAttribute('aria-hidden','true');const copy=document.createElement('span');copy.className='link-copy';const title=document.createElement('strong');title.textContent=item.name;const caption=document.createElement('small');caption.textContent=item.description;copy.append(title,caption);const arrow=document.createElement('span');arrow.className='link-arrow';arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');link.append(icon,copy,arrow);grid.append(link);});
+bookmarks.forEach((item,i)=>{const link=document.createElement('a');link.className='site-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.style.setProperty('--i',i);link.style.setProperty('--brand',item.color);link.setAttribute('aria-label',`${item.name}，在新标签页打开`);const icon=document.createElement('span');icon.className='link-icon';const image=document.createElement('img');image.src=item.icon;image.alt='';image.width=26;image.height=26;icon.append(image);const copy=document.createElement('span');copy.className='link-copy';const title=document.createElement('strong');title.textContent=item.name;const caption=document.createElement('small');caption.textContent=item.description;copy.append(title,caption);const arrow=document.createElement('span');arrow.className='link-arrow';arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');link.append(icon,copy,arrow);grid.append(link);});
+const navigationObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('in-view');navigationObserver.unobserve(entry.target);}},{threshold:.12});navigationObserver.observe(document.querySelector('#navigation'));
 document.querySelector('#year').textContent=new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Shanghai'}).format(new Date());
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');let effectsOn=true;try{effectsOn=localStorage.getItem('rainy-home-rain')!=='off';}catch{}
 const rainButton=document.querySelector('#rain-switch'),canvas=document.querySelector('#rain-canvas'),context=canvas.getContext('2d');let width=0,height=0,frame=0,lastTime=0;const drops=[],ripples=[];
