@@ -20,3 +20,33 @@
 @media(max-height:650px){.site-header{top:20px;padding-bottom:13px}.site-header .eyebrow{margin-bottom:7px}.site-header h1{font-size:24px}.site-header .intro-description{margin-top:7px}.hero-heading{top:25%}.home-stage{margin-top:100px}}
 @media(max-height:500px){.hero-heading{top:155px}.home-stage{margin-top:100px}}
 .character-actions{bottom:10%}@media(max-width:480px){.character-actions{bottom:15%}}@media(max-height:650px){.character-actions{bottom:10%}}
+
+/* 雨滴点击反馈与昼夜主题 */
+.weather-controls button svg{display:block;width:19px;height:19px;margin:auto;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.theme-twirl svg{animation:theme-twirl .55s ease}.weather-controls button{display:grid;place-items:center}
+.click-ripple{width:12px;height:7px;border:1.5px solid #9fbdd6a8;animation:water-ring .75s ease-out var(--delay,0ms) both;z-index:20}
+.click-droplet{position:fixed;width:5px;height:8px;border-radius:60% 40% 60% 60%;background:#99bfd6aa;pointer-events:none;z-index:20;animation:water-drop .7s cubic-bezier(.2,.6,.4,1) both}
+.click-spark{color:#c29fb8;animation:click-star .85s ease-out both;z-index:20}
+@keyframes water-ring{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:.8}100%{opacity:0;transform:translate(-50%,-50%) scale(7)}}
+@keyframes water-drop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}20%{opacity:.9}75%{opacity:.7;transform:translate(var(--dx),var(--dy)) rotate(var(--turn)) scale(.8)}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + 14px)) rotate(var(--turn)) scale(.3)}}
+@keyframes click-star{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}20%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(20deg) scale(.7)}}
+@keyframes theme-twirl{0%{transform:rotate(-35deg) scale(.65)}65%{transform:rotate(10deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
+#cg-dialog[open]{animation:cg-open .3s ease-out}#cg-dialog[open]::backdrop{animation:backdrop-in .3s ease}
+@keyframes cg-open{from{opacity:0;translate:0 12px;scale:.97}to{opacity:1;translate:0 0;scale:1}}@keyframes backdrop-in{from{opacity:0}to{opacity:1}}
+.night-moon{position:absolute;right:17%;top:21%;width:54px;height:54px;border-radius:50%;background:#f9e7bd;box-shadow:0 0 45px #f7dba525;opacity:0;scale:.7;transition:opacity .6s,scale .6s}.night-moon:after{content:"";position:absolute;left:16px;top:-7px;width:48px;height:48px;border-radius:50%;background:#1c2a40}
+body,.navigation-screen,.site-header,.site-link,.link-copy strong,.hero-heading h2,.home-note,.cg-postcard,.weather-controls button,#cg-dialog{transition:background-color .4s,color .4s,border-color .4s,box-shadow .4s}
+[data-theme=dark]{color-scheme:dark;color:#bccde0;background:#18263b}
+[data-theme=dark] body{background:radial-gradient(ellipse at 15% 75%,#223547 0,transparent 42%),radial-gradient(ellipse at 90% 15%,#30293e 0,transparent 42%),#18263b;background-attachment:fixed}
+[data-theme=dark] .navigation-screen{background:linear-gradient(180deg,#1b2a3a88,#1c2b3fee 22%,#1c2b3ff2 85%,#18263b);border-color:#35465a}
+[data-theme=dark] .site-header{border-color:#40516966}[data-theme=dark] h1,[data-theme=dark] .navigation-title,[data-theme=dark] .hero-heading h2{color:#c5d6e8}[data-theme=dark] h1 span{color:#a3c7bf}
+[data-theme=dark] .eyebrow,[data-theme=dark] .intro-description,[data-theme=dark] .hero-heading>p,[data-theme=dark] .hero-subtitle,[data-theme=dark] footer,[data-theme=dark] .scroll-cue{color:#8fa8bf}
+[data-theme=dark] .weather-controls button{background:#25364c;border-color:#40546e;color:#b3c7dd}[data-theme=dark] .weather-controls button:hover{background:#344963}[data-theme=dark] .weather-controls button[aria-pressed=true]{background:#35425d;color:#ecdbb4}
+[data-theme=dark] .portrait-aura{background:radial-gradient(circle,#adbed61a 0,#7c96c50b 45%,transparent 70%)}[data-theme=dark] .home-note{background:#374050a6;border-color:#69728040;color:#cfccb9}[data-theme=dark] .home-note small{color:#a5adac}[data-theme=dark] .home-note>span{color:#b7c5b6}
+[data-theme=dark] .cg-postcard{background:#2d3d52;border-color:#465b72;box-shadow:0 8px 20px #07111f35}[data-theme=dark] .cg-postcard>span{color:#b6c8db}
+[data-theme=dark] .site-link{background:#26374b;border-color:#40526a;box-shadow:0 8px 24px #0d162515}[data-theme=dark] .site-link:hover{background:#2c4057;border-color:#788ca6;box-shadow:0 8px 26px #080f242b}[data-theme=dark] .link-copy strong{color:#d0ddeb}[data-theme=dark] .link-copy small{color:#9eb2c8}[data-theme=dark] .link-icon{background:#c2d6f20d;border-color:#adc2dc12}[data-theme=dark] .site-link:nth-child(1) .link-icon img,[data-theme=dark] .site-link:nth-child(5) .link-icon img{filter:invert(.85)}
+[data-theme=dark] .cloud{color:#92abc51a;filter:none}[data-theme=dark] .little-star{color:#ddd5b0}[data-theme=dark] .night-moon{opacity:.9;scale:1}[data-theme=dark] .greeting{background:#2e3d51;border-color:#506179;color:#ccdbeb;box-shadow:0 5px 0 #101d2c66}
+[data-theme=dark] #cg-dialog{background:#213248;border-color:#4a617b;color:#c1d3e7}[data-theme=dark] #cg-dialog::backdrop{background:#081426b3}[data-theme=dark] .cg-dialog-header>button{background:#334962;color:#cbdaea}[data-theme=dark] .cg-full-image{background:#172538}[data-theme=dark] .cg-caption{color:#a7bed4}
+[data-theme=dark] .click-ripple{border-color:#a8cce5a8}[data-theme=dark] .click-droplet{background:#b5d7edb8}[data-theme=dark] .click-spark{color:#e6c5d8}
+@media(max-width:480px){.site-header .weather-controls{gap:6px}.site-header .weather-controls button{width:30px;height:32px}.night-moon{right:14%;top:34%;width:38px;height:38px}.night-moon:after{width:35px;height:35px;left:12px;top:-6px}}
+.effects-paused #cg-dialog[open],.effects-paused #cg-dialog[open]::backdrop{animation:none}
+.site-link{transition:transform .25s,background-color .4s,color .4s,border-color .4s,box-shadow .25s}.cg-postcard{transition:rotate .3s,transform .3s,background-color .4s,color .4s,border-color .4s}

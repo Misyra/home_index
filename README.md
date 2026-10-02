@@ -1,6 +1,6 @@
 # 雨间小屋
 
-一个上下两屏的雨天主题导航页：第一屏顶部展示站名、介绍和雨声/动效控制，下方展示Q版少女、简短雨天文案、小便签、动作切换按钮与CG明信片入口；下滑后第二屏显示导航标题和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
+一个上下两屏的雨天主题导航页：第一屏顶部展示站名、介绍和主题/雨声/动效控制，下方展示Q版少女、简短雨天文案、小便签与CG明信片入口；下滑后第二屏显示导航标题和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
 
 打开 `dist/index.html` 即可使用，或者运行 `node preview.mjs` 后访问 `http://127.0.0.1:4173`。
 
@@ -20,8 +20,8 @@ GitHub、哔哩哔哩、豆瓣、网易云音乐与 Notion 图标来自 https://
 
 ## 新增人物内容
 
-- `dist/rain-girl-happy.png`：同一人物的开心跳步姿态。点击「换个动作」在挥手与闭眼比耶之间切换。
-- `dist/rain-cg.png`：人物坐在雨天咖啡馆窗边捧着热茶的CG。点击「雨天一刻」或首页明信片打开；可按 Esc、关闭按钮或点击弹窗外部关闭。
+- `dist/rain-girl-happy.png`：同一人物的开心跳步姿态。点击人物在挥手与闭眼比耶之间切换，并显示问候。
+- `dist/rain-cg.png`：人物坐在雨天咖啡馆窗边捧着热茶的CG。点击首页明信片打开；可按 Esc、关闭按钮或点击弹窗外部关闭。
 
 两张素材均由内置 image_gen 生成，原有素材保留。
 
@@ -35,3 +35,7 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 修正提示词：Edit the same character as 洛茜 from 明日方舟：终末地. Make her clearly young, petite and childlike: rounded cheeks, short soft chin, large golden eyes, narrow shoulders, small hands and limbs, small straight torso, larger head-to-body ratio. Preserve blonde twin pigtails, red animal-ear hood with cream interiors/cyan stitching, red cape, dark gloves and boots, and utility belt with teal buckles. Use a fully closed high-neck gray-blue blouse. Preserve each existing pose or the rainy cafe scene, lighting and composition. Wholesome fully clothed character. Chibi versions retain genuine transparency; CG retains landscape composition. No text or watermark.
 
 最终采用的CG以修正后的Q版作为形象参考，保持相同小巧比例。最终CG提示词：Create a warm wholesome storybook anime CG of the exact chibi character in the reference, keeping her small chibi proportions, large round head, rounded cheeks, tiny hands, small straight body, blonde twin pigtails, golden eyes, red animal-ear hood with cyan stitches, red cape, fully buttoned high-neck long-sleeved gray-blue dress, utility belt, dark gloves and boots. Landscape 3:2. Sitting on a cream cushion in a cozy wooden cafe at a rain-streaked window, holding a large mug of warm tea with both little gloved hands. Body mostly behind the table, hood and face dominant. Closed sky-blue umbrella beside window, hydrangeas and rainy garden outside, steaming tea and cookies on table. Delicate anime illustration and detailed dreamy painted background; powder blue, cream wood and soft warm lighting. Chibi character right-center, beautiful rain window at left. No text, logos, border, watermark or UI.
+
+## 昼夜与点击交互
+
+顶部月亮/太阳按钮切换日间与夜间模式，选择保存在本地；首次跟随系统主题。点击反馈包含双层水波、飞溅水珠与小星星。人物点击切换动作，明信片打开CG；已移除原有两个文字操作按钮。动效开关和系统减少动态效果均能停用这些动画。
