@@ -83,3 +83,17 @@ body,.navigation-screen,.site-header,.site-link,.link-copy strong,.hero-heading 
 [data-theme=dark] .site-footer{--footer-ink:#b5c6d5;--footer-muted:#8298ae;--footer-line:#768da12d;background:radial-gradient(ellipse at 65% 0,#29243888,transparent 65%),#151f30;border-color:#6d7e981f;color:var(--footer-ink)}[data-theme=dark] .footer-decoration{color:#718ea9}[data-theme=dark] .footer-cloud{fill:#28384b}[data-theme=dark] .footer-drop{fill:#2a40567a}[data-theme=dark] .footer-star{fill:#8f788d}[data-theme=dark] .footer-badges span{color:#b9a8c9;border-color:#b4a1c133;background:#b4a1c110}[data-theme=dark] .footer-badges span:nth-child(2){color:#9bbacb;border-color:#92bacc33;background:#92bacc10}[data-theme=dark] .footer-badges span:nth-child(3){color:#c1ae8d;border-color:#c1ae8d33;background:#c1ae8d10}
 @media(max-width:580px){.site-footer{padding:25px 23px 23px;margin:0;font-size:10px}.footer-decoration{gap:13px}.footer-decoration>span{width:36px}.footer-decoration svg{width:155px;height:52px}.footer-motto{font-size:10px;letter-spacing:1.4px;margin-bottom:17px}.footer-badges span{font-size:8px;padding:5px 11px}.footer-links{gap:8px 20px;margin:17px 0}.footer-links a{font-size:9px}.footer-uptime{font-size:9px;gap:5px;margin-bottom:20px}#site-uptime{min-width:169px}.footer-bottom{justify-content:center;flex-direction:column;gap:5px;padding-top:16px}.footer-bottom small{font-size:8px}.footer-signature{font-size:6px}}
 
+/* 星雨日间主题：与小屋和页脚一致，浅色粒子使用较深的彩色墨点。 */
+[data-theme=light] .particle-screen{background:radial-gradient(ellipse at 68% 38%,#f4dce7a8,transparent 48%),radial-gradient(ellipse at 15% 84%,#d6e8f3a3,transparent 52%),#eef6fb;color:#526b82}
+[data-theme=light] .particle-screen:before,[data-theme=light] .particle-screen:after{border-color:#8da6bb66}
+[data-theme=light] .particle-topline{color:#687f94}[data-theme=light] .particle-topline a{color:#5d768d;border-color:#8b9ab24d}
+[data-theme=light] .particle-kicker{color:#956b63}[data-theme=light] .particle-kicker>span{color:#aa748a}
+[data-theme=light] .particle-copy h2{background-image:linear-gradient(135deg,#526c86,#95657e)}
+[data-theme=light] .particle-copy h2>span{color:#7d6c85}
+[data-theme=light] .particle-poem{color:#62788c;border-color:#92a8bd4a}
+[data-theme=light] .particle-controls button{background:#fff6faad;color:#85526d;border-color:#c78ea477;box-shadow:0 4px 15px #85728b06}
+[data-theme=light] .particle-controls button:nth-child(2){background:#f6fbffad;color:#4e718f;border-color:#91b0d177}
+[data-theme=light] .particle-controls button:hover{background:#f9e7ef}[data-theme=light] .particle-controls button:nth-child(2):hover{background:#e2f0fb}
+[data-theme=light] .particle-status,[data-theme=light] .particle-hint{color:#657c91}
+[data-theme=light] .particle-halo{background:radial-gradient(ellipse,#bda9c122,transparent 67%)}[data-theme=light] .particle-ground{background:#68879e20}
+[data-theme=light] .particle-fallback{filter:brightness(.8) saturate(.9) drop-shadow(0 5px 10px #8a7f9225)}

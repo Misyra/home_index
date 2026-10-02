@@ -15,13 +15,13 @@
     const step=w<450?2:1;
     dots=[];
     for(let i=0;i<data.points.length;i+=step){const [x,y,r,g,b,a]=data.points[i];const jitterX=Math.sin(i*12.9898)*.65,jitterY=Math.cos(i*7.233)*.65;const hx=ox+(x+jitterX)*scale,hy=oy+(y+jitterY)*scale;
-      dots.push({hx,hy,x:hx,y:hy,vx:0,vy:0,color:`rgba(${Math.max(40,r)},${Math.max(35,g)},${Math.max(48,b)},${(.68+a/255*.32).toFixed(2)})`,size:Math.max(.8,scale*(step===2?2.2:1.85)),phase:Math.random()*6.28});}
+      dots.push({hx,hy,x:hx,y:hy,vx:0,vy:0,color:`rgba(${Math.max(40,r)},${Math.max(35,g)},${Math.max(48,b)},${(.68+a/255*.32).toFixed(2)})`,lightColor:`rgba(${Math.round(r*.65+4)},${Math.round(g*.62+4)},${Math.round(b*.60+4)},${(.78+a/255*.22).toFixed(2)})`,size:Math.max(.8,scale*(step===2?2.2:1.85)),phase:Math.random()*6.28});}
     stars=Array.from({length:w<450?28:50},()=>({x:Math.random()*w,y:Math.random()*h,r:.5+Math.random()*1.2,phase:Math.random()*6.28}));
     scatterUntil=0;section.dataset.particleState='gathered';draw(performance.now(),false);sync();
   }
   function draw(time,animate){
-    ctx.clearRect(0,0,w,h);const t=time/1000;
-    for(const star of stars){ctx.fillStyle=`rgba(191,209,242,${animate?.17+(.5+.5*Math.sin(t*.6+star.phase))*.28:.3})`;ctx.beginPath();ctx.arc(star.x,star.y,star.r,0,6.283);ctx.fill();}
+    ctx.clearRect(0,0,w,h);const t=time/1000,dark=document.documentElement.dataset.theme==='dark';
+    for(const star of stars){ctx.fillStyle=`rgba(${dark?'191,209,242':'106,135,164'},${animate?.17+(.5+.5*Math.sin(t*.6+star.phase))*.28:.3})`;ctx.beginPath();ctx.arc(star.x,star.y,star.r,0,6.283);ctx.fill();}
     const scattered=time<scatterUntil;
     for(const p of dots){
       if(animate){
@@ -31,9 +31,9 @@
         if(!scattered&&d<85&&d>0){const f=(1-d/85)*1.9;p.vx+=dx/d*f;p.vy+=dy/d*f;}
         p.vx*=.86;p.vy*=.86;p.x+=p.vx;p.y+=p.vy;
       }else{p.x=p.hx;p.y=p.hy;p.vx=p.vy=0;}
-      ctx.fillStyle=p.color;
+      ctx.fillStyle=dark?p.color:p.lightColor;
       const shimmer=animate?1+Math.sin(t*1.1+p.phase)*.12:1;
-      ctx.fillRect(p.x,p.y,p.size*shimmer,p.size*shimmer);
+      const dotSize=p.size*shimmer*(dark?1:1.12);ctx.fillRect(p.x,p.y,dotSize,dotSize);
     }
     if(animate&&scatterUntil&&time>=scatterUntil){scatterUntil=0;section.dataset.particleState='gathering';status.textContent='星星正在回到她身边。';settleAt=time+2200;}
     if(animate&&settleAt&&time>settleAt){settleAt=0;section.dataset.particleState='gathered';status.textContent='靠近她，看看星星的回应。';}
@@ -61,7 +61,9 @@
   scatterButton.addEventListener('click',scatter);gatherButton.addEventListener('click',gather);
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)pointer.x=pointer.y=-999;sync();},{threshold:.08}).observe(section);
   new ResizeObserver(resize).observe(stage);
+  document.addEventListener('rainy-theme-change',()=>draw(performance.now(),enabled()&&visible&&!document.hidden));
   document.addEventListener('visibilitychange',sync);document.addEventListener('rainy-effects-change',sync);motion.addEventListener('change',sync);
   addEventListener('pagehide',()=>cancelAnimationFrame(raf));resize();
 })();
+
 

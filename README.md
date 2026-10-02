@@ -55,3 +55,5 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 
 ## 页脚
 参考 https://rainzt.cn/posts/footer-config/ 的层次顺序，使用原创云朵雨滴 SVG、实际 HTML/CSS/Canvas 徽章、站内三屏入口、陪伴时长及站名版权。夜间模式和手机自动适配。运行起点为 Sites 创建时间 2026-10-02T14:20:43.468504Z，配置位于 dist/app.js 末尾；每秒更新、后台暂停。没有设置个人社交账号或备案占位编号。
+
+星雨页已随全站昼夜模式切换：日间浅蓝粉色背景与深色文字，Canvas 对高亮粒子使用较深彩色墨点；切换主题立即重绘，动效关闭时也生效。
