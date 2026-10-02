@@ -7,7 +7,7 @@ http.createServer(async(request,response)=>{
   try{
     const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);
     const name=pathname==='/'?'index.html':pathname.slice(1);
-    if(!['index.html','style.css','app.js','rain-cat.png','rain-girl.png','rain-girl-happy.png','rain-cg.png','rain-cg-splash.png','rain-cg-umbrella.png','rain-cg-boats.png','icons/github.svg','icons/bilibili.svg','icons/douban.svg','icons/neteasecloudmusic.svg','icons/notion.svg','icons/huaban.png'].includes(name)){response.writeHead(404);response.end('Not found');return;}
+    if(!['index.html','style.css','app.js','welcome.js','particles.js','particle-data.js','rossi-particle-portrait.png','rain-cat.png','rain-girl.png','rain-girl-happy.png','rain-cg.png','rain-cg-splash.png','rain-cg-umbrella.png','rain-cg-boats.png','icons/github.svg','icons/bilibili.svg','icons/douban.svg','icons/neteasecloudmusic.svg','icons/notion.svg','icons/huaban.png'].includes(name)){response.writeHead(404);response.end('Not found');return;}
     const data=await readFile(new URL(name,root));
     response.writeHead(200,{'Content-Type':types[name.split('.').pop()],'Cache-Control':'no-store'});response.end(data);
   }catch{response.writeHead(404);response.end('Not found');}
