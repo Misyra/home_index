@@ -82,3 +82,14 @@ themeButton.addEventListener('animationend',()=>themeButton.classList.remove('th
 let audioContext,rainGain,soundOn=false;const soundButton=document.querySelector('#sound-button');
 soundButton.addEventListener('click',async()=>{try{if(!audioContext){const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)throw Error('Audio unavailable');audioContext=new AudioContextClass();const buffer=audioContext.createBuffer(1,audioContext.sampleRate*4,audioContext.sampleRate),data=buffer.getChannelData(0);let previous=0;for(let i=0;i<data.length;i++){previous=(previous+.02*(Math.random()*2-1))/1.02;data[i]=previous*3.5;}const source=audioContext.createBufferSource();source.buffer=buffer;source.loop=true;const filter=audioContext.createBiquadFilter();filter.type='lowpass';filter.frequency.value=1400;rainGain=audioContext.createGain();rainGain.gain.value=0;source.connect(filter);filter.connect(rainGain);rainGain.connect(audioContext.destination);source.start();}await audioContext.resume();soundOn=!soundOn;rainGain.gain.setTargetAtTime(soundOn?.32:0,audioContext.currentTime,.3);soundButton.setAttribute('aria-pressed',String(soundOn));soundButton.setAttribute('aria-label',soundOn?'暂停雨声':'播放雨声');soundButton.title=soundOn?'暂停雨声':'听听雨声';}catch{greeting.textContent='这个浏览器暂时不能播放雨声';greeting.classList.add('show');clearTimeout(greetingTimer);greetingTimer=setTimeout(()=>greeting.classList.remove('show'),2500);}});
 document.addEventListener('visibilitychange',()=>{if(audioContext&&soundOn){if(document.hidden)audioContext.suspend();else audioContext.resume().catch(()=>{});}});
+
+// 页脚配置：站点真实创建时间；修改这一处即可调整起点。
+(()=>{
+  const siteStartDate='2026-10-02T14:20:43.468504Z';
+  const counter=document.querySelector('#site-uptime');
+  document.querySelector('#footer-year').textContent=String(new Date().getFullYear());
+  const started=Date.parse(siteStartDate);let uptimeTimer;
+  function update(){const elapsed=Math.max(0,Math.floor((Date.now()-started)/1000));const days=Math.floor(elapsed/86400),hours=Math.floor(elapsed%86400/3600),minutes=Math.floor(elapsed%3600/60),seconds=elapsed%60;counter.textContent=`${days} 天 ${String(hours).padStart(2,'0')} 小时 ${String(minutes).padStart(2,'0')} 分 ${String(seconds).padStart(2,'0')} 秒`;}
+  function sync(){clearInterval(uptimeTimer);if(!document.hidden){update();uptimeTimer=setInterval(update,1000);}}
+  document.addEventListener('visibilitychange',sync);addEventListener('pagehide',()=>clearInterval(uptimeTimer));addEventListener('pageshow',sync);sync();
+})();

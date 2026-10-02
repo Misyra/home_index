@@ -52,3 +52,6 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 第三屏星雨洛茜：鼠标扰动、点击散开、按钮聚拢；触屏保留纵向滚动。离屏/后台暂停，动效开关和系统减少动态设置均生效。
 欢迎便笺参照 https://www.rainzt.cn/posts/welcome-toast/ 的会话首次进入体验，实现独立原创文案：延迟 850ms、6.5 秒自动关闭、手动关闭、按时间问候。sessionStorage 同会话刷新不再弹出。
 新画像生成说明与提示词见 PARTICLE-PROMPT.md。
+
+## 页脚
+参考 https://rainzt.cn/posts/footer-config/ 的层次顺序，使用原创云朵雨滴 SVG、实际 HTML/CSS/Canvas 徽章、站内三屏入口、陪伴时长及站名版权。夜间模式和手机自动适配。运行起点为 Sites 创建时间 2026-10-02T14:20:43.468504Z，配置位于 dist/app.js 末尾；每秒更新、后台暂停。没有设置个人社交账号或备案占位编号。

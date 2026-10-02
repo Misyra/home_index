@@ -1,0 +1,22 @@
+from pathlib import Path
+import re
+root=Path(r'D:\Misyra\Documents\ChatGPT\导航页\rainy-home')
+p=root/'dist/index.html'
+s=p.read_text(encoding='utf-8')
+s=s.replace('<footer><span>和喜欢的世界保持联系','<div class="nav-note"><span>和喜欢的世界保持联系').replace('</span></footer><a class="next-screen-link"','</span></div><a class="next-screen-link"')
+footer='''<footer class="site-footer" id="footer" aria-label="小屋页脚">
+  <div class="footer-inner">
+    <div class="footer-decoration" aria-hidden="true"><span></span><svg viewBox="0 0 200 66" fill="none"><path d="M28 24v8m13 9v7m121-22v8m-12 10v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M58 39a12 12 0 0 1 3-23 20 20 0 0 1 37-2 14 14 0 0 1 12 25Z" class="footer-cloud" stroke="currentColor" stroke-width="1.5"/><circle cx="74" cy="28" r="1.7" fill="currentColor"/><circle cx="91" cy="28" r="1.7" fill="currentColor"/><path d="m80 32 3 2 3-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M126 12c-6 8-10 12-10 18a10 10 0 0 0 20 0c0-6-4-10-10-18Z" class="footer-drop" stroke="currentColor" stroke-width="1.5"/><circle cx="123" cy="29" r="1.1" fill="currentColor"/><circle cx="130" cy="29" r="1.1" fill="currentColor"/><path d="m125 33 2 1 2-1" stroke="currentColor" stroke-linecap="round"/><path d="m100 52 2-4 2 4 4 2-4 2-2 4-2-4-4-2Z" class="footer-star"/></svg><span></span></div>
+    <p class="footer-motto">雨会停，小屋会一直在。</p>
+    <div class="footer-badges" aria-label="本站使用的技术"><span>HTML</span><span>CSS</span><span>Canvas</span></div>
+    <nav class="footer-links" aria-label="小屋页面入口"><a href="#home">雨间小屋 <span aria-hidden="true">↗</span></a><a href="#navigation">我的导航 <span aria-hidden="true">↗</span></a><a href="#particles">星雨洛茜 <span aria-hidden="true">↗</span></a></nav>
+    <p class="footer-uptime"><span class="footer-alive" aria-hidden="true"></span>小屋已陪伴你 <span id="site-uptime">从 <time datetime="2026-10-02T14:20:43.468504Z">2026 年 10 月 2 日</time> 开始</span></p>
+    <div class="footer-bottom"><small>© <span id="footer-year">2026</span> 雨间小屋</small><span class="footer-signature">MADE WITH RAIN &amp; A LITTLE LOVE <span aria-hidden="true">♡</span></span></div>
+  </div>
+</footer>'''
+s=s.replace('</main><aside','</main>'+footer+'<aside')
+p.write_text(s,encoding='utf-8')
+p=root/'dist/style.css'
+s=p.read_text(encoding='utf-8')
+s=re.sub(r'(?<![\w-])footer(?=\{|,)', '.nav-note',s)
+p.write_text(s,encoding='utf-8')
