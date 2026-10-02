@@ -1,0 +1,4 @@
+---
+import { bookmarks } from '../config/site';
+---
+<nav class="link-grid" id="link-grid" aria-label="常用网站导航">{bookmarks.map((item,i)=><a class="site-link" href={item.url} target={item.url.startsWith('http')?'_blank':undefined} rel={item.url.startsWith('http')?'noopener noreferrer':undefined} style={`--i:${i};--brand:${item.color}`} aria-label={item.name+(item.url.startsWith('http')?'，在新标签页打开':'')}><span class="link-icon"><img src={item.icon} alt="" width="26" height="26" loading="lazy" decoding="async" /></span><span class="link-copy"><strong>{item.name}</strong><small>{item.description}</small></span></a>)}<button class="site-link" data-open-music style="--i:7;--brand:112,150,173" aria-label="打开雨天音乐"><span class="link-icon" aria-hidden="true">♫</span><span class="link-copy"><strong>雨天音乐</strong><small>给小屋配一首温柔的歌</small></span></button></nav>

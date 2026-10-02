@@ -1,0 +1,4 @@
+from pathlib import Path
+r=Path(r'D:\Misyra\Documents\ChatGPT\导航页\rainy-home')
+p=r/'src/components/MusicPlayer.astro';s=p.read_text(encoding='utf-8-sig');s="---\nimport { musicConfig } from '../config/music';\nconst track=musicConfig.local[0];\n---\n"+s;s=s.replace('id="music-panel" hidden','id="music-panel" data-config={JSON.stringify(musicConfig)} hidden').replace('>使一颗心免于哀伤</strong>','>{track.name}</strong>').replace('>知更鸟 / HOYO-MiX / Chevy</span>','>{track.artist}</span>');p.write_text(s,encoding='utf-8')
+p=r/'public/scripts/music.js';s=p.read_text(encoding='utf-8-sig');start=s.index('  const local=');end=s.index('  let metingTracks',start);s=s[:start]+"  const config=JSON.parse(panel.dataset.config),local=config.local,apis=config.apis;\n  volume.value=String(Math.round(config.volume*100));\n"+s[end:];p.write_text(s,encoding='utf-8')

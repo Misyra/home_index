@@ -1,0 +1,90 @@
+{
+  "index.html": {
+    "directBytes": 373562,
+    "files": {
+      "./index.html": 13280,
+      "./particles.html": 7561,
+      "assets/apple-touch-icon.png": 26125,
+      "assets/favicon-32.png": 1883,
+      "assets/favicon-64.png": 5226,
+      "assets/favicon.ico": 6261,
+      "assets/rain-cg-boats-thumb.webp": 31928,
+      "assets/rain-cg-splash-thumb.webp": 32804,
+      "assets/rain-cg-thumb.webp": 26726,
+      "assets/rain-cg-umbrella-thumb.webp": 32526,
+      "assets/rain-girl-avatar.webp": 6832,
+      "assets/rain-girl.webp": 115738,
+      "icons/bilibili.svg": 1396,
+      "icons/douban.svg": 325,
+      "icons/github.svg": 837,
+      "icons/huaban.png": 4035,
+      "icons/neteasecloudmusic.svg": 1352,
+      "icons/notion.svg": 993,
+      "scripts/home.js": 5396,
+      "scripts/music.js": 5455,
+      "scripts/site.js": 5685,
+      "scripts/welcome.js": 1397,
+      "style.css": 39801
+    },
+    "scripts": [
+      "scripts/site.js",
+      "scripts/welcome.js",
+      "scripts/music.js",
+      "scripts/home.js"
+    ]
+  },
+  "particles.html": {
+    "directBytes": 795445,
+    "files": {
+      "./index.html": 13280,
+      "./particles.html": 7561,
+      "assets/apple-touch-icon.png": 26125,
+      "assets/favicon-32.png": 1883,
+      "assets/favicon.ico": 6261,
+      "assets/rossi-particle-portrait.webp": 335418,
+      "particles.css": 7458,
+      "scripts/music.js": 5455,
+      "scripts/particle-data.js": 340666,
+      "scripts/particles.js": 4455,
+      "scripts/site.js": 5685,
+      "scripts/welcome.js": 1397,
+      "style.css": 39801
+    },
+    "scripts": [
+      "scripts/site.js",
+      "scripts/welcome.js",
+      "scripts/music.js",
+      "scripts/particle-data.js",
+      "scripts/particles.js"
+    ]
+  },
+  "assets": {
+    "apple-touch-icon.png": 26125,
+    "cursor-default.cur": 1994,
+    "cursor-hover.cur": 2334,
+    "cursor-pressed.cur": 1627,
+    "favicon-16.png": 733,
+    "favicon-180.png": 26125,
+    "favicon-192.png": 28987,
+    "favicon-32.png": 1883,
+    "favicon-512.png": 157784,
+    "favicon-64.png": 5226,
+    "favicon.ico": 6261,
+    "music-cover.webp": 34764,
+    "music.mp3": 936680,
+    "rain-cg-boats-thumb.webp": 31928,
+    "rain-cg-boats.webp": 273794,
+    "rain-cg-splash-thumb.webp": 32804,
+    "rain-cg-splash.webp": 300772,
+    "rain-cg-thumb.webp": 26726,
+    "rain-cg-umbrella-thumb.webp": 32526,
+    "rain-cg-umbrella.webp": 301226,
+    "rain-cg.webp": 225532,
+    "rain-girl-avatar.webp": 6832,
+    "rain-girl-happy.webp": 124802,
+    "rain-girl.webp": 115738,
+    "rossi-particle-portrait.webp": 335418
+  },
+  "previousDirectBytes": 16560565,
+  "homeReductionPercent": 97.74
+}

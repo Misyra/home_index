@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout particle title="星雨洛茜 · 雨间小屋"><main><section class="particle-screen" id="particles" aria-labelledby="particle-title">
+  <div class="particle-topline"><span>RAINY LITTLE HOME / 星雨一刻</span><div class="particle-header-actions"><a href="./index.html" aria-label="回到首页">回到小屋</a><div class="weather-controls"><button id="theme-button" aria-label="切换到夜间模式" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg></button><button data-open-music aria-label="打开雨天音乐" title="雨天音乐">♫</button><button id="rain-switch" aria-label="切换粒子动效" aria-pressed="true">☂</button></div></div></div>
+  <div class="particle-layout"><div class="particle-copy"><p class="particle-kicker"><span aria-hidden="true">✦</span> 雨滴的另一种模样</p><h2 id="particle-title">洛茜<span>ROSSI</span></h2><p class="particle-poem">让雨滴，变成星星。<br>把小小的快乐，留在这一刻。</p><div class="particle-controls"><button id="particle-scatter">粒子散开 <span aria-hidden="true">✧</span></button><button id="particle-gather">重新聚拢 <span aria-hidden="true">✦</span></button></div><p class="particle-status" id="particle-status" role="status">靠近她，看看星星的回应。</p></div>
+  <div class="particle-stage"><span class="particle-halo" aria-hidden="true"></span><img class="particle-fallback" src="assets/rossi-particle-portrait.webp" width="720" height="960" decoding="async" alt="彩色星光粒子组成的Q版洛茜：金色双马尾、金瞳、红色兽耳兜帽与灰蓝长袖裙，微笑挥手"><canvas id="portrait-particles" tabindex="0" role="button" aria-label="洛茜粒子像，点击或按回车让粒子散开" aria-describedby="particle-hint"></canvas><span class="particle-ground" aria-hidden="true"></span></div></div>
+  <p class="particle-hint" id="particle-hint">移动指尖，拨动星雨 · 轻点人物，散落一片星光</p>
+</section></main><script is:inline src="scripts/particle-data.js" defer></script><script is:inline src="scripts/particles.js" defer></script></Layout>
