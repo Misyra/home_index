@@ -1,6 +1,7 @@
 // 复用 misyra-blog 的本地歌曲与 Meting 配置；媒体和歌单均在用户操作后加载。
 (()=>{
-  const panel=document.querySelector('#music-panel'),audio=document.querySelector('#music-audio');
+  const panel=document.querySelector('#music-panel'),audio=document.querySelector('#music-audio'),launcher=document.querySelector('#music-launcher'),launcherCover=document.querySelector('#music-launcher-cover');
+  const openButtons=[...document.querySelectorAll('[data-open-music]')];let expanded=false,closeTimer;
   const title=document.querySelector('#music-title'),artist=document.querySelector('#music-artist'),cover=document.querySelector('#music-cover');
   const play=document.querySelector('#music-play'),prev=document.querySelector('#music-prev'),next=document.querySelector('#music-next'),source=document.querySelector('#music-source');
   const progress=document.querySelector('#music-progress'),volume=document.querySelector('#music-volume'),status=document.querySelector('#music-status');
@@ -10,14 +11,16 @@
   try{const saved=Number(localStorage.getItem('rainy-home-volume'));if(localStorage.getItem('rainy-home-volume')!==null&&Number.isFinite(saved))volume.value=String(Math.max(0,Math.min(100,saved)));}catch{}
   audio.volume=Number(volume.value)/100;
   const format=s=>{if(!Number.isFinite(s))return'0:00';return`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;};
-  function open(){panel.hidden=false;document.body.classList.add('music-open');if(!cover.hasAttribute('src'))cover.src=cover.dataset.src;}
-  function close(){panel.hidden=true;document.body.classList.remove('music-open');}
-  document.querySelectorAll('[data-open-music]').forEach(button=>button.addEventListener('click',()=>{if(panel.hidden)open();else close();}));
+  function setExpanded(value){expanded=value;openButtons.forEach(button=>{button.setAttribute('aria-expanded',String(value));button.setAttribute('aria-controls','music-panel');});launcher.setAttribute('aria-label',value?'收起雨天音乐':'展开雨天音乐');launcher.title=value?'收起雨天音乐':'展开雨天音乐';}
+  function open(){clearTimeout(closeTimer);panel.hidden=false;panel.inert=false;panel.classList.remove('closing');setExpanded(true);document.body.classList.add('music-open');if(!cover.hasAttribute('src'))cover.src=cover.dataset.src;}
+  function close(){setExpanded(false);document.body.classList.remove('music-open');if(panel.contains(document.activeElement))launcher.focus();panel.inert=true;panel.classList.add('closing');clearTimeout(closeTimer);closeTimer=setTimeout(()=>{panel.hidden=true;panel.classList.remove('closing');},Rainy.reducedMotion.matches||!Rainy.effectsOn?0:180);}
+  openButtons.forEach(button=>button.addEventListener('click',()=>{if(expanded)close();else open();}));
   document.querySelector('#music-close').addEventListener('click',close);
-  panel.addEventListener('keydown',event=>{if(event.key==='Escape'){close();document.querySelector('[data-open-music]')?.focus();}});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!document.querySelector('dialog[open]'))close();});
+  launcherCover.addEventListener('error',()=>{if(launcherCover.getAttribute('src')!=='assets/music-cover.webp')launcherCover.src='assets/music-cover.webp';});
   cover.addEventListener('error',()=>{cover.removeAttribute('src');});
-  function syncPlay(){const playing=!audio.paused&&!audio.ended;play.textContent=playing?'Ⅱ':'▶';play.setAttribute('aria-label',playing?'暂停音乐':'播放音乐');panel.classList.toggle('playing',playing);}
-  function loadTrack(i){index=(i+tracks.length)%tracks.length;audio.pause();const track=tracks[index];audio.src=track.url;title.textContent=track.name;artist.textContent=track.artist;cover.src=track.pic||'assets/music-cover.webp';prev.disabled=next.disabled=tracks.length<2;progress.value='0';progress.disabled=true;document.querySelector('#music-current').textContent='0:00';document.querySelector('#music-duration').textContent='0:00';syncPlay();}
+  function syncPlay(){const playing=!audio.paused&&!audio.ended;play.innerHTML=playing?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z"/></svg>';launcher.classList.toggle('playing',playing);play.setAttribute('aria-label',playing?'暂停音乐':'播放音乐');panel.classList.toggle('playing',playing);}
+  function loadTrack(i){index=(i+tracks.length)%tracks.length;audio.pause();const track=tracks[index];audio.src=track.url;title.textContent=track.name;artist.textContent=track.artist;cover.src=track.pic||'assets/music-cover.webp';launcherCover.src=cover.src;prev.disabled=next.disabled=tracks.length<2;progress.value='0';progress.style.setProperty('--progress','0%');progress.disabled=true;document.querySelector('#music-current').textContent='0:00';document.querySelector('#music-duration').textContent='0:00';syncPlay();}
   async function start(){if(busy||pendingPlay)return;pendingPlay=true;play.disabled=true;const ver=loadId;if(!audio.getAttribute('src'))loadTrack(index);status.textContent='正在准备音乐…';try{await audio.play();if(ver===loadId)status.textContent='正在播放，愿这首歌陪你一会儿。';}catch(e){if(ver===loadId&&e.name!=='AbortError')status.textContent=e.name==='NotAllowedError'?'请再点一次播放。':'这首歌暂时不能播放，可以换个来源试试。';}finally{if(ver===loadId){pendingPlay=false;play.disabled=busy;syncPlay();}}}
   play.addEventListener('click',()=>{if(audio.paused)start();else{audio.pause();status.textContent='音乐暂停了，随时可以继续。';}});
   function changeTrack(delta){if(!tracks.length||busy)return;loadId++;loadTrack(index+delta);start();}
@@ -31,13 +34,14 @@
     if(found?.length){metingTracks=found;tracks=found;loadTrack(0);status.textContent=`已载入 ${tracks.length} 首歌，点播放开始。`;}
     else{tracks=local;source.value='local';loadTrack(0);status.textContent='歌单暂时没连上，已切回博客同款单曲。';}
   });
-  volume.addEventListener('input',()=>{audio.volume=Number(volume.value)/100;try{localStorage.setItem('rainy-home-volume',volume.value);}catch{}});
-  progress.addEventListener('input',()=>{if(Number.isFinite(audio.duration)&&audio.duration>0)audio.currentTime=audio.duration*Number(progress.value)/100;});
-  function updateTime(){if(!Number.isFinite(audio.duration)||audio.duration<=0)return;progress.disabled=false;progress.value=String(audio.currentTime/audio.duration*100);document.querySelector('#music-current').textContent=format(audio.currentTime);document.querySelector('#music-duration').textContent=format(audio.duration);}
+  function paintVolume(){volume.style.setProperty('--progress',volume.value+'%');document.querySelector('#music-volume-value').textContent=volume.value+'%';}paintVolume();
+  volume.addEventListener('input',()=>{audio.volume=Number(volume.value)/100;paintVolume();try{localStorage.setItem('rainy-home-volume',volume.value);}catch{}});
+  progress.addEventListener('input',()=>{if(Number.isFinite(audio.duration)&&audio.duration>0){audio.currentTime=audio.duration*Number(progress.value)/100;progress.style.setProperty('--progress',progress.value+'%');}});
+  function updateTime(){if(!Number.isFinite(audio.duration)||audio.duration<=0)return;progress.disabled=false;progress.value=String(audio.currentTime/audio.duration*100);progress.style.setProperty('--progress',progress.value+'%');document.querySelector('#music-current').textContent=format(audio.currentTime);document.querySelector('#music-duration').textContent=format(audio.duration);}
   audio.addEventListener('timeupdate',()=>{const now=performance.now();if(now-lastPaint<250)return;lastPaint=now;updateTime();});
   audio.addEventListener('loadedmetadata',updateTime);audio.addEventListener('play',syncPlay);audio.addEventListener('pause',syncPlay);
-  audio.addEventListener('ended',()=>{if(tracks.length>1)changeTrack(1);else{syncPlay();status.textContent='这首歌播完啦，再听一次也很好。';}});
+  audio.addEventListener('ended',()=>{updateTime();if(tracks.length>1)changeTrack(1);else{syncPlay();status.textContent='这首歌播完啦，再听一次也很好。';}});
   audio.addEventListener('error',()=>{if(audio.getAttribute('src'))status.textContent='这首歌暂时不能播放，换一首或切回小屋单曲吧。';syncPlay();});
-  addEventListener('pagehide',()=>{controller?.abort();audio.pause();});
+  addEventListener('pagehide',()=>{controller?.abort();audio.pause();clearTimeout(closeTimer);if(!expanded){panel.hidden=true;panel.classList.remove('closing');}});
 })();
 

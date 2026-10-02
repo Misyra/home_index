@@ -1,0 +1,5 @@
+from pathlib import Path
+p=Path('public/scripts/music.js');s=p.read_text(encoding='utf-8').replace("panel.addEventListener('keydown',event=>{if(event.key==='Escape')close();});","document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!document.querySelector('dialog[open]'))close();});").replace("audio.addEventListener('ended',()=>{if(tracks.length>1)","audio.addEventListener('ended',()=>{updateTime();if(tracks.length>1)");p.write_text(s,encoding='utf-8')
+p=Path('public/style.css');s=p.read_text(encoding='utf-8');s+='\n.music-panel select{font-size:14px}\n';p.write_text(s,encoding='utf-8')
+p=Path('README.md');s=p.read_text(encoding='utf-8');s+='\n## 唱片播放器\n\n左下角默认显示圆形唱片，点击向上展开控制面板。播放时唱片旋转，暂停或关闭动效时停止；收起面板不暂停音乐。唱片封面随当前曲目更新，展开状态与所有音乐入口的 aria-expanded 同步，支持 Esc 收起与恢复键盘焦点。面板支持手机窄屏、日夜主题和减少动态效果设置。\n';p.write_text(s,encoding='utf-8')
+p=Path('PERFORMANCE.md');s=p.read_text(encoding='utf-8').replace('约 0.38 MB','约 0.42 MB').replace('减少约 97.7%','减少约 97.4%');s+='\n唱片入口直接引用本地封面约35 KB（与展开面板复用同一文件），无需新的音乐库；旋转使用CSS动画，暂停状态停止旋转。\n';p.write_text(s,encoding='utf-8')
