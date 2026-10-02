@@ -1,6 +1,6 @@
 # 雨间小屋
 
-一个上下两屏的雨天主题导航页：第一屏顶部展示站名、介绍和主题/雨声/动效控制，下方展示Q版少女、简短雨天文案、小便签与CG明信片入口；下滑后第二屏显示导航标题和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
+一个上下两屏的雨天主题导航页：第一屏顶部展示站名、介绍和主题/雨声/动效控制，下方展示Q版少女、简短雨天文案、四张散落的CG明信片；下滑后第二屏显示导航标题和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
 
 打开 `dist/index.html` 即可使用，或者运行 `node preview.mjs` 后访问 `http://127.0.0.1:4173`。
 
@@ -21,7 +21,7 @@ GitHub、哔哩哔哩、豆瓣、网易云音乐与 Notion 图标来自 https://
 ## 新增人物内容
 
 - `dist/rain-girl-happy.png`：同一人物的开心跳步姿态。点击人物在挥手与闭眼比耶之间切换，并显示问候。
-- `dist/rain-cg.png`：人物坐在雨天咖啡馆窗边捧着热茶的CG。点击首页明信片打开；可按 Esc、关闭按钮或点击弹窗外部关闭。
+- `dist/rain-cg.png`：人物坐在雨天咖啡馆窗边捧着热茶的CG。点击对应首页明信片打开；可按 Esc、关闭按钮或点击弹窗外部关闭。
 
 两张素材均由内置 image_gen 生成，原有素材保留。
 
@@ -42,4 +42,4 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 
 ## 雨天相册
 
-新增洛茜与蓝发鱼尾女孩一起踩水花、共撑雨伞、放纸船的三张CG，保存于 dist/rain-cg-splash.png、dist/rain-cg-umbrella.png、dist/rain-cg-boats.png。与原有热茶CG一起通过首页明信片打开的相册查看，支持缩略图、前后按钮和键盘左右方向键。内置 image_gen 生成；完整最终提示词见 CG-PROMPTS.md。
+新增洛茜与蓝发鱼尾女孩一起踩水花、共撑雨伞、放纸船的三张CG，保存于 dist/rain-cg-splash.png、dist/rain-cg-umbrella.png、dist/rain-cg-boats.png。与原有热茶CG一起分散摆在首屏人物周围，每张明信片都可点击独立放大查看。内置 image_gen 生成；完整最终提示词见 CG-PROMPTS.md。
