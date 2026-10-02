@@ -1,6 +1,6 @@
 # 雨间小屋
 
-一个上下两屏的雨天主题导航页：第一屏只有Q版少女与下滑提示；下滑后第二屏显示站名和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
+一个上下两屏的雨天主题导航页：第一屏展示Q版少女、简短雨天文案、小便签、动作切换按钮与CG明信片入口；下滑后第二屏显示站名和六个外部链接。导航支持进入视野后依次出现，保留人物浮动、雨滴涟漪和卡片悬停动效。
 
 打开 `dist/index.html` 即可使用，或者运行 `node preview.mjs` 后访问 `http://127.0.0.1:4173`。
 
@@ -17,3 +17,21 @@
 ## 导航图标
 
 GitHub、哔哩哔哩、豆瓣、网易云音乐与 Notion 图标来自 https://github.com/simple-icons/simple-icons 。花瓣图标来自其官网 https://huaban.com/img/touch-icon-iphone-retina.png 。图标已保存到 dist/icons，页面无外部图标请求。
+
+## 新增人物内容
+
+- `dist/rain-girl-happy.png`：同一人物的开心跳步姿态。点击「换个动作」在挥手与闭眼比耶之间切换。
+- `dist/rain-cg.png`：人物坐在雨天咖啡馆窗边捧着热茶的CG。点击「雨天一刻」或首页明信片打开；可按 Esc、关闭按钮或点击弹窗外部关闭。
+
+两张素材均由内置 image_gen 生成，原有素材保留。
+
+动作最终提示词：Create a second pose of exactly the same chibi girl from the input reference. Preserve pale blonde twin low pigtails, amber golden eyes, brick-red animal-eared hood with cream inner ears and cyan stitches, red cape, gray-blue fully covering dress, black corset belt with teal buckles, black gloves and dark boots. Same clean anime chibi rendering and 2.5-head proportions. Delighted playful little hop, eyes closed in a curved smile, rosy cheeks, right hand making a V sign near cheek, left hand holding the same sky-blue open umbrella tilted behind her, one leg raised slightly. Entire hood ears, umbrella and boots in frame with padding. Genuine transparent background; no text, scenery, watermark or extra characters.
+
+CG最终提示词：Create a polished landscape anime CG of the same blonde amber-eyed girl in the two character identity references. Preserve pale blonde low twin pigtails, golden eyes, red animal-ear hood with cream ear interiors and cyan stitching, red cape, modest gray-blue dress, charcoal corset belt and black gloves. Seated at a cozy wooden cafe window on a rainy afternoon, looking at viewer with a gentle smile, both hands around a ceramic mug of hot tea. Closed sky-blue umbrella beside the window; rain beads and streaks on glass, softly blurred hydrangeas and garden outside, cream cushions and tea steam. Gentle delicate anime linework and dreamy painted background, powder blue, mint and warm red accents. Fully clothed, landscape 3:2, no lettering, logos, UI or watermark.
+## 年龄感修正
+
+用户指出人物是《明日方舟：终末地》的洛茜，要求年幼、小巧的体型。挥手、比耶和CG三个版本均使用内置 image_gen 修正：圆润脸颊、短下巴、更小的肩宽与手脚、较大的头身比例。保留金瞳、浅金双马尾、红色兽耳兜帽、蓝色缝线与斗篷。服装采用完整闭合的灰蓝高领上衣。
+
+修正提示词：Edit the same character as 洛茜 from 明日方舟：终末地. Make her clearly young, petite and childlike: rounded cheeks, short soft chin, large golden eyes, narrow shoulders, small hands and limbs, small straight torso, larger head-to-body ratio. Preserve blonde twin pigtails, red animal-ear hood with cream interiors/cyan stitching, red cape, dark gloves and boots, and utility belt with teal buckles. Use a fully closed high-neck gray-blue blouse. Preserve each existing pose or the rainy cafe scene, lighting and composition. Wholesome fully clothed character. Chibi versions retain genuine transparency; CG retains landscape composition. No text or watermark.
+
+最终采用的CG以修正后的Q版作为形象参考，保持相同小巧比例。最终CG提示词：Create a warm wholesome storybook anime CG of the exact chibi character in the reference, keeping her small chibi proportions, large round head, rounded cheeks, tiny hands, small straight body, blonde twin pigtails, golden eyes, red animal-ear hood with cyan stitches, red cape, fully buttoned high-neck long-sleeved gray-blue dress, utility belt, dark gloves and boots. Landscape 3:2. Sitting on a cream cushion in a cozy wooden cafe at a rain-streaked window, holding a large mug of warm tea with both little gloved hands. Body mostly behind the table, hood and face dominant. Closed sky-blue umbrella beside window, hydrangeas and rainy garden outside, steaming tea and cookies on table. Delicate anime illustration and detailed dreamy painted background; powder blue, cream wood and soft warm lighting. Chibi character right-center, beautiful rain window at left. No text, logos, border, watermark or UI.
