@@ -1,8 +1,8 @@
 {
   "index.html": {
-    "directBytes": 424922,
+    "directBytes": 528942,
     "files": {
-      "./index.html": 14796,
+      "./index.html": 21652,
       "./particles.html": 9077,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
@@ -15,18 +15,21 @@
       "assets/rain-cg-umbrella-thumb.webp": 32526,
       "assets/rain-girl-avatar.webp": 6832,
       "assets/rain-girl.webp": 115738,
+      "assets/rossi-cg-lantern-thumb.webp": 31982,
+      "assets/rossi-cg-letter-thumb.webp": 30716,
+      "assets/rossi-cg-rainbow-thumb.webp": 33114,
       "icons/bilibili.svg": 1396,
       "icons/douban.svg": 325,
       "icons/github.svg": 837,
       "icons/huaban.png": 4035,
       "icons/neteasecloudmusic.svg": 1352,
       "icons/notion.svg": 993,
-      "scripts/home.js": 5396,
+      "scripts/home.js": 4355,
       "scripts/music.js": 6792,
       "scripts/pet.js": 2730,
       "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 48729
+      "style.css": 51122
     },
     "scripts": [
       "scripts/site.js",
@@ -34,12 +37,26 @@
       "scripts/music.js",
       "scripts/home.js",
       "scripts/pet.js"
-    ]
+    ],
+    "characterAssets": {
+      "assets/rain-cg-boats.webp": 273794,
+      "assets/rain-cg-splash.webp": 300772,
+      "assets/rain-cg-umbrella.webp": 301226,
+      "assets/rain-cg.webp": 225532,
+      "assets/rain-girl-happy.webp": 124802,
+      "assets/rain-girl.webp": 115738,
+      "assets/rossi-cg-lantern.webp": 282538,
+      "assets/rossi-cg-letter.webp": 249544,
+      "assets/rossi-cg-rainbow.webp": 288090,
+      "assets/rossi-pose-lantern.webp": 92060,
+      "assets/rossi-pose-letter.webp": 93808,
+      "assets/rossi-pose-rainbow.webp": 99182
+    }
   },
   "particles.html": {
-    "directBytes": 846805,
+    "directBytes": 856054,
     "files": {
-      "./index.html": 14796,
+      "./index.html": 21652,
       "./particles.html": 9077,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
@@ -53,7 +70,7 @@
       "scripts/pet.js": 2730,
       "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 48729
+      "style.css": 51122
     },
     "scripts": [
       "scripts/site.js",
@@ -89,11 +106,20 @@
     "rain-girl-avatar.webp": 6832,
     "rain-girl-happy.webp": 124802,
     "rain-girl.webp": 115738,
+    "rossi-cg-lantern-thumb.webp": 31982,
+    "rossi-cg-lantern.webp": 282538,
+    "rossi-cg-letter-thumb.webp": 30716,
+    "rossi-cg-letter.webp": 249544,
+    "rossi-cg-rainbow-thumb.webp": 33114,
+    "rossi-cg-rainbow.webp": 288090,
     "rossi-corner.gif": 162010,
     "rossi-particle-portrait.webp": 335418,
     "rossi-pet-sheet.webp": 129108,
-    "rossi-pet-still.webp": 16972
+    "rossi-pet-still.webp": 16972,
+    "rossi-pose-lantern.webp": 92060,
+    "rossi-pose-letter.webp": 93808,
+    "rossi-pose-rainbow.webp": 99182
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 97.43
+  "homeReductionPercent": 96.81
 }

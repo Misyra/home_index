@@ -1,45 +1,24 @@
 (()=>{
+const {poses,scenes:cgScenes}=JSON.parse(document.querySelector('#character-config').textContent);
 const navigationObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('in-view');navigationObserver.unobserve(entry.target);}},{threshold:.12});navigationObserver.observe(document.querySelector('#navigation'));
-// 24条原创问候，打乱后逐条播放，一轮内不重复。
-const characterMessages=[
-'今天也要开心呀 ♡',
-'送你一朵不会淋湿的云 ☁',
-'滴答！很高兴遇见你 ♡',
-'雨声这么好听，再待一会儿吧。',
-'嘿！这把伞也有你的位置。',
-'今天的快乐，偷偷装进口袋啦。',
-'大肥鱼说，这个水洼归她啦！',
-'要不要和我们一起放纸船？',
-'啪嗒！刚才的水花像小星星。',
-'雨停之前，先收下一个好心情。',
-'别急，慢慢来就好。',
-'今天也辛苦啦，来躲一会儿雨。',
-'云朵正在帮我们把天空洗干净。',
-'这次踩水花，我一定不会输！',
-'暖暖的茶已经准备好啦。',
-'嘘，听见雨滴打招呼了吗？',
-'我的兜帽很暖，雨伞也很大。',
-'这只纸船，载着一个小愿望。',
-'再点一下？还有话想和你说。',
-'星星躲在云后，也在偷偷看你。',
-'能遇见你，今天的雨都变甜了。',
-'跟着滴答滴答，给心情放个假。',
-'大肥鱼的尾巴，又溅起水花啦！',
-'把烦恼放进纸船，送它漂远一点。'];
-let messageBag=[],lastMessage=-1;
-function nextCharacterMessage(){if(!messageBag.length){messageBag=characterMessages.map((_,i)=>i);for(let i=messageBag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[messageBag[i],messageBag[j]]=[messageBag[j],messageBag[i]];}if(messageBag.at(-1)===lastMessage)[messageBag[0],messageBag[messageBag.length-1]]=[messageBag[messageBag.length-1],messageBag[0]];}lastMessage=messageBag.pop();return characterMessages[lastMessage];}
-const poses=[{src:'assets/rain-girl.webp',alt:'Q版洛茜撑着蓝色小雨伞，微笑挥手'},{src:'assets/rain-girl-happy.webp',alt:'Q版洛茜撑着蓝色小雨伞，闭眼笑着比耶，轻轻抬起一条腿'}];
+// 每个动作有自己的台词池，轮内不重复；保留原有24条问候。
+const messageBags=new Map(),lastMessages=new Map();
+function nextCharacterMessage(index){const lines=poses[index].dialogues;let bag=messageBags.get(index);if(!bag?.length){bag=lines.map((_,i)=>i);for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}if(bag.length>1&&bag.at(-1)===lastMessages.get(index))[bag[0],bag[bag.length-1]]=[bag[bag.length-1],bag[0]];messageBags.set(index,bag);}const i=bag.pop();lastMessages.set(index,i);return lines[i];}
+function loadImage(src){return new Promise((resolve,reject)=>{const image=new Image();const timer=setTimeout(()=>finish(false),12000);function finish(ok){clearTimeout(timer);image.onload=image.onerror=null;ok?resolve(image):reject(new Error('Image unavailable'));}image.onload=()=>finish(true);image.onerror=()=>finish(false);image.src=src;});}
 let poseIndex=0,poseChanging=false;const mascotImage=document.querySelector('#mascot'),mascotButton=document.querySelector('#mascot-button');
 const preload=()=>{const image=new Image();image.src=poses[1].src;};if('requestIdleCallback' in window)requestIdleCallback(preload,{timeout:5000});else setTimeout(preload,3500);
-mascotButton.addEventListener('click',()=>{if(poseChanging)return;poseChanging=true;const next=(poseIndex+1)%poses.length;const image=new Image();image.onload=()=>{mascotButton.classList.add('pose-changing');setTimeout(()=>{poseIndex=next;mascotImage.src=poses[next].src;mascotImage.alt=poses[next].alt;mascotButton.classList.remove('pose-changing');if(Rainy.effectsOn&&!Rainy.reducedMotion.matches){mascotButton.classList.remove('wiggle');void mascotButton.offsetWidth;mascotButton.classList.add('wiggle');}Rainy.showGreeting(nextCharacterMessage());poseChanging=false;},Rainy.effectsOn&&!Rainy.reducedMotion.matches?130:0);};image.onerror=()=>{poseChanging=false;Rainy.showGreeting('图片加载慢了一点，再试一次吧');};image.src=poses[next].src;});
+mascotButton.addEventListener('click',async()=>{if(poseChanging)return;poseChanging=true;mascotButton.setAttribute('aria-busy','true');const next=(poseIndex+1)%poses.length;try{await loadImage(poses[next].src);mascotButton.classList.add('pose-changing');await new Promise(resolve=>setTimeout(resolve,Rainy.effectsOn&&!Rainy.reducedMotion.matches?130:0));poseIndex=next;mascotImage.src=poses[next].src;mascotImage.alt=poses[next].alt;mascotButton.classList.remove('pose-changing');if(Rainy.effectsOn&&!Rainy.reducedMotion.matches){mascotButton.classList.remove('wiggle');void mascotButton.offsetWidth;mascotButton.classList.add('wiggle');}Rainy.showGreeting(nextCharacterMessage(next));}catch{Rainy.showGreeting('图片加载慢了一点，再试一次吧。');}finally{poseChanging=false;mascotButton.setAttribute('aria-busy','false');}});
 mascotButton.addEventListener('animationend',event=>{if(event.animationName==='wiggle')mascotButton.classList.remove('wiggle');});
-const cgDialog=document.querySelector('#cg-dialog');
-const cgScenes=[
-{src:'assets/rain-cg-splash.webp',title:'一起踩水花',caption:'啪嗒！把小水洼踩成快乐的形状。',alt:'Q版洛茜和蓝色鱼尾女孩在雨中开心地踩水花'},
-{src:'assets/rain-cg-umbrella.webp',title:'共撑一把伞',caption:'伞下的位置，刚好够我们两个。',alt:'Q版洛茜和蓝色鱼尾女孩共撑一把蓝色雨伞，在绣球花小路上散步'},
-{src:'assets/rain-cg-boats.webp',title:'纸船漂呀漂',caption:'把小小的愿望，交给雨水和纸船。',alt:'Q版洛茜和蓝色鱼尾女孩蹲在浅浅的雨水边，一起放纸船'},
-{src:'assets/rain-cg.webp',title:'窗边的热茶',caption:'窗外滴答滴答，杯里是暖暖的茶。',alt:'Q版洛茜坐在雨天窗边捧着一杯热茶'}];
-document.querySelectorAll('[data-scene]').forEach(button=>button.addEventListener('click',()=>{const scene=cgScenes[Number(button.dataset.scene)],image=cgDialog.querySelector('.cg-full-image');image.src=scene.src;image.alt=scene.alt;document.querySelector('#cg-title').textContent=scene.title;document.querySelector('#cg-caption').textContent=scene.caption;cgDialog.showModal();}));
-document.querySelector('#close-cg').addEventListener('click',()=>cgDialog.close());cgDialog.addEventListener('click',event=>{const rect=cgDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)cgDialog.close();});
-
+const cgDialog=document.querySelector('#cg-dialog'),cgImage=cgDialog.querySelector('.cg-full-image'),imageNext=document.querySelector('#cg-image-next');
+const cgTitle=document.querySelector('#cg-title'),cgCaption=document.querySelector('#cg-caption'),cgState=document.querySelector('#cg-state'),cgCounter=document.querySelector('#cg-counter'),thumbButtons=[...document.querySelectorAll('[data-gallery-scene]')];
+let sceneIndex=0,requestedScene=0,sceneVersion=0;const sceneReads=new Map();
+async function showScene(index,open=false){const next=(index+cgScenes.length)%cgScenes.length,version=++sceneVersion,scene=cgScenes[next];requestedScene=next;cgDialog.classList.add('scene-loading');cgDialog.setAttribute('aria-busy','true');imageNext.disabled=true;cgState.textContent='正在准备这一刻…';
+try{await loadImage(scene.src);if(version!==sceneVersion)return;sceneIndex=next;cgImage.src=scene.src;cgImage.alt=scene.alt;cgTitle.textContent=scene.title;const read=sceneReads.get(next)||0;cgCaption.textContent=scene.dialogues[read%scene.dialogues.length];sceneReads.set(next,read+1);cgCounter.textContent=`${next+1} / ${cgScenes.length}`;thumbButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===next)));if(open&&!cgDialog.open)cgDialog.showModal();if(Rainy.effectsOn&&!Rainy.reducedMotion.matches){cgImage.classList.remove('cg-arrive');void cgImage.offsetWidth;cgImage.classList.add('cg-arrive');}thumbButtons[next].scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});cgState.textContent='点击图片，看看下一刻。';}
+catch{if(version===sceneVersion){requestedScene=sceneIndex;cgState.textContent='图片暂时没载入，再点一下试试。';if(!cgDialog.open)Rainy.showGreeting('这张明信片还在路上，再点一下试试吧。');}}
+finally{if(version===sceneVersion){cgDialog.classList.remove('scene-loading');cgDialog.setAttribute('aria-busy','false');imageNext.disabled=false;}}}
+document.querySelectorAll('[data-scene]').forEach(button=>button.addEventListener('click',async()=>{button.setAttribute('aria-busy','true');try{await showScene(Number(button.dataset.scene),true);}finally{button.setAttribute('aria-busy','false');}}));
+imageNext.addEventListener('click',()=>showScene(requestedScene+1));document.querySelector('#cg-next').addEventListener('click',()=>showScene(requestedScene+1));document.querySelector('#cg-prev').addEventListener('click',()=>showScene(requestedScene-1));thumbButtons.forEach(button=>button.addEventListener('click',()=>showScene(Number(button.dataset.galleryScene))));
+cgDialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showScene(requestedScene+(event.key==='ArrowRight'?1:-1));}});
+document.querySelector('#close-cg').addEventListener('click',()=>cgDialog.close());cgDialog.addEventListener('click',event=>{if(event.target!==cgDialog||event.detail===0)return;const rect=cgDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)cgDialog.close();});
+cgDialog.addEventListener('close',()=>{sceneVersion++;requestedScene=sceneIndex;cgDialog.classList.remove('scene-loading');cgDialog.setAttribute('aria-busy','false');imageNext.disabled=false;});
 })();
