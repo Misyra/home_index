@@ -1,9 +1,9 @@
 {
   "index.html": {
-    "directBytes": 373562,
+    "directBytes": 378847,
     "files": {
-      "./index.html": 13280,
-      "./particles.html": 7561,
+      "./index.html": 13599,
+      "./particles.html": 7880,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -22,22 +22,24 @@
       "icons/notion.svg": 993,
       "scripts/home.js": 5396,
       "scripts/music.js": 5455,
-      "scripts/site.js": 5685,
+      "scripts/pet.js": 2730,
+      "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 39801
+      "style.css": 41149
     },
     "scripts": [
       "scripts/site.js",
       "scripts/welcome.js",
       "scripts/music.js",
-      "scripts/home.js"
+      "scripts/home.js",
+      "scripts/pet.js"
     ]
   },
   "particles.html": {
-    "directBytes": 795445,
+    "directBytes": 800730,
     "files": {
-      "./index.html": 13280,
-      "./particles.html": 7561,
+      "./index.html": 13599,
+      "./particles.html": 7880,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
@@ -46,16 +48,18 @@
       "scripts/music.js": 5455,
       "scripts/particle-data.js": 340666,
       "scripts/particles.js": 4455,
-      "scripts/site.js": 5685,
+      "scripts/pet.js": 2730,
+      "scripts/site.js": 6254,
       "scripts/welcome.js": 1397,
-      "style.css": 39801
+      "style.css": 41149
     },
     "scripts": [
       "scripts/site.js",
       "scripts/welcome.js",
       "scripts/music.js",
       "scripts/particle-data.js",
-      "scripts/particles.js"
+      "scripts/particles.js",
+      "scripts/pet.js"
     ]
   },
   "assets": {
@@ -83,8 +87,11 @@
     "rain-girl-avatar.webp": 6832,
     "rain-girl-happy.webp": 124802,
     "rain-girl.webp": 115738,
-    "rossi-particle-portrait.webp": 335418
+    "rossi-corner.gif": 162010,
+    "rossi-particle-portrait.webp": 335418,
+    "rossi-pet-sheet.webp": 129108,
+    "rossi-pet-still.webp": 16972
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 97.74
+  "homeReductionPercent": 97.71
 }

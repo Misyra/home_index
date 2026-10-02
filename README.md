@@ -40,3 +40,9 @@ npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地
 ## 发布
 
 .openai/hosting.json 绑定现有 Sites 项目，保持 static.directory 为 dist。先构建并推送对应源码，再打包 dist 与 .openai/hosting.json 发布。不要直接编辑 dist：下次构建会覆盖它。
+
+## 角落洛茜与新版雨滴
+
+角落洛茜使用内置 image_gen 生成八帧，透明 GIF 位于 public/assets/rossi-corner.gif。网页使用同一组 WebP 帧在 192×208 canvas 上播放，显示为96×104px（手机76×83px），支持点击问候和拖动；后台、关闭动效、减少动态效果时暂停，打开播放器时避让。提示词见 PET-PROMPT.md。
+
+雨滴改为三层速度和透明度的细雨线，带轻微变动风向；水花与涟漪在雨滴实际落点出现，短时消退。数量上限110，涟漪上限18，保留30 FPS节奏限制和后台暂停。
