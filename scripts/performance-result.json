@@ -1,9 +1,9 @@
 {
   "index.html": {
-    "directBytes": 530069,
+    "directBytes": 531827,
     "files": {
-      "./index.html": 21697,
-      "./particles.html": 9122,
+      "./index.html": 21714,
+      "./particles.html": 9139,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -24,12 +24,12 @@
       "icons/huaban.png": 4035,
       "icons/neteasecloudmusic.svg": 1352,
       "icons/notion.svg": 993,
-      "scripts/home.js": 4355,
-      "scripts/music.js": 6792,
+      "scripts/home.js": 4554,
+      "scripts/music.js": 6879,
       "scripts/pet.js": 2730,
-      "scripts/site.js": 6254,
+      "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 51122,
+      "style.css": 52143,
       "typography.css": 1037
     },
     "scripts": [
@@ -55,23 +55,23 @@
     }
   },
   "particles.html": {
-    "directBytes": 857181,
+    "directBytes": 859073,
     "files": {
-      "./index.html": 21697,
-      "./particles.html": 9122,
+      "./index.html": 21714,
+      "./particles.html": 9139,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
       "assets/music-cover.webp": 34764,
       "assets/rossi-particle-portrait.webp": 335418,
       "particles.css": 7458,
-      "scripts/music.js": 6792,
+      "scripts/music.js": 6879,
       "scripts/particle-data.js": 340666,
-      "scripts/particles.js": 4455,
+      "scripts/particles.js": 4788,
       "scripts/pet.js": 2730,
-      "scripts/site.js": 6254,
+      "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 51122,
+      "style.css": 52143,
       "typography.css": 1037
     },
     "scripts": [
@@ -127,5 +127,5 @@
     "rossi-pose-rainbow.webp": 99182
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 96.8
+  "homeReductionPercent": 96.79
 }

@@ -1,0 +1,28 @@
+{
+  "points": 13744,
+  "before": {
+    "idle": {
+      "sin": 13794,
+      "hypot": 13744,
+      "sqrt": 0
+    },
+    "hovered": {
+      "sin": 13794,
+      "hypot": 13744,
+      "sqrt": 0
+    }
+  },
+  "after": {
+    "idle": {
+      "sin": 50,
+      "hypot": 0,
+      "sqrt": 0
+    },
+    "hovered": {
+      "sin": 50,
+      "hypot": 0,
+      "sqrt": 2975
+    }
+  },
+  "positionCheck": "passed"
+}

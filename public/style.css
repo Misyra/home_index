@@ -110,3 +110,8 @@ body,.navigation-screen,.site-header,.site-link,.link-copy strong,.hero-heading 
 @media(max-width:580px){#cg-dialog{width:calc(100% - 24px);padding:14px}.cg-gallery-controls{gap:8px}.cg-thumbnails{gap:6px;flex:1}.cg-thumbnails button{width:47px}.cg-dialogue{padding:10px 11px;gap:9px;min-height:76px}.cg-dialogue>img{width:35px;height:35px}.cg-dialogue .cg-caption{font-size:14px}.cg-step{width:29px;height:35px}.cg-gallery-note{font-size:12px;gap:8px}.cg-dialog-header h2{font-size:17px}}
 #cg-dialog{overflow-x:hidden}#cg-dialog .cg-full-image{max-height:48svh}
 @media(prefers-reduced-motion:reduce){.cg-image-button,#cg-dialog .cg-full-image{transition:none}}
+/* Keep the page still behind the gallery and pause decorations off screen. */
+:root{scrollbar-gutter:stable}.gallery-open{overflow:hidden}.hero-out-of-view .mascot-button,.hero-out-of-view .mascot-wrap:after,.hero-out-of-view .scattered-card,.hero-out-of-view .scroll-chevron{animation-play-state:paused}
+.cg-thumbnails button:focus-visible{outline-offset:0}.music-panel select:focus-visible{outline-offset:3px}
+[data-theme=light] .intro-description,[data-theme=light] .hero-subtitle,[data-theme=light] .link-copy small,[data-theme=light] .nav-note,[data-theme=light] .footer-uptime,[data-theme=light] .footer-links a,[data-theme=light] .music-panel>p,[data-theme=light] .music-progress>div,[data-theme=light] .cg-gallery-note{color:#627c90}
+@media(max-width:580px){.music-panel select{font-size:16px}.cg-step{width:44px;height:44px}.cg-thumbnails button{min-height:44px}.music-controls>button{width:44px;height:44px}.music-panel-heading button,#close-cg{min-width:44px;min-height:44px}.weather-controls button{position:relative}.weather-controls button:before{content:"";position:absolute;inset:-2px}}

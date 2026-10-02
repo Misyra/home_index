@@ -1,10 +1,10 @@
 (()=>{
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');let effectsOn=true;try{effectsOn=localStorage.getItem('rainy-home-rain')!=='off';}catch{}
 const rainButton=document.querySelector('#rain-switch'),canvas=document.querySelector('#rain-canvas'),context=canvas?.getContext('2d');
-let width=0,height=0,frame=0,lastTime=0,lastPaint=0;const drops=[],ripples=[];
+let width=0,height=0,frame=0,lastTime=0,lastPaint=0,resizeFrame=0,pixelRatio=0;const drops=[],ripples=[];
 const layers=[{speed:310,length:9,alpha:.12,weight:.55},{speed:540,length:17,alpha:.19,weight:.8},{speed:800,length:26,alpha:.28,weight:1.1}];
 function spawn(drop,initial=false){const layer=layers[drop.depth];drop.x=Math.random()*(width+100)-70;drop.ground=height*(.86+Math.random()*.14);drop.y=initial?Math.random()*drop.ground:-40-Math.random()*height*.15;drop.speed=layer.speed*(.8+Math.random()*.4);drop.length=layer.length*(.8+Math.random()*.4);}
-function resize(){if(!context)return;width=innerWidth;height=innerHeight;const ratio=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);context.setTransform(ratio,0,0,ratio,0,0);drops.length=0;ripples.length=0;for(let i=0;i<Math.min(110,Math.round(width/12));i++){const drop={depth:i%5===0?2:i%2};spawn(drop,true);drops.push(drop);}}
+function resize(){if(!context)return;const ratio=Math.min(devicePixelRatio||1,1.5);if(width===innerWidth&&height===innerHeight&&pixelRatio===ratio)return;width=innerWidth;height=innerHeight;pixelRatio=ratio;canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);context.setTransform(ratio,0,0,ratio,0,0);drops.length=0;ripples.length=0;for(let i=0;i<Math.min(110,Math.round(width/12));i++){const drop={depth:i%5===0?2:i%2};spawn(drop,true);drops.push(drop);}}
 function render(time){if(time-lastPaint<32){frame=requestAnimationFrame(render);return;}lastPaint=time;const dt=Math.min((time-lastTime)/1000,.05);lastTime=time;context.clearRect(0,0,width,height);context.lineCap='butt';const dark=document.documentElement.dataset.theme==='dark',rgb=dark?'184,219,244':'72,125,159',wind=.13+Math.sin(time/7500)*.025;
 for(const drop of drops){const layer=layers[drop.depth];drop.y+=drop.speed*dt;drop.x+=drop.speed*wind*dt;
 if(drop.y>=drop.ground){if(ripples.length<18&&drop.depth>0&&drop.x>0&&drop.x<width)ripples.push({x:drop.x,y:drop.ground,age:0,scale:drop.depth===2?1:.65});spawn(drop);continue;}
@@ -15,7 +15,9 @@ if(r.age<.22){context.strokeStyle=`rgba(${rgb},${(1-r.age/.22)*.3})`;context.beg
 if(r.age>.65)ripples.splice(i,1);}
 frame=requestAnimationFrame(render);}
 function syncEffects(){document.body.classList.toggle('page-hidden',document.hidden);if(!effectsOn||reducedMotion.matches)document.querySelector('#mascot-button')?.classList.remove('wiggle');document.body.classList.toggle('effects-paused',!effectsOn);rainButton.setAttribute('aria-pressed',String(effectsOn));cancelAnimationFrame(frame);frame=0;if(context&&effectsOn&&!reducedMotion.matches&&!document.hidden){lastTime=performance.now();frame=requestAnimationFrame(render);}else context?.clearRect(0,0,width,height);document.dispatchEvent(new Event('rainy-effects-change'));}
-resize();syncEffects();addEventListener('resize',resize);document.addEventListener('visibilitychange',syncEffects);reducedMotion.addEventListener('change',syncEffects);
+resize();syncEffects();addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(resize);});document.addEventListener('visibilitychange',syncEffects);reducedMotion.addEventListener('change',syncEffects);
+addEventListener('pagehide',()=>{cancelAnimationFrame(frame);cancelAnimationFrame(resizeFrame);});addEventListener('pageshow',()=>{resize();syncEffects();});
+const home=document.querySelector('#home');if(home)new IntersectionObserver(entries=>document.body.classList.toggle('hero-out-of-view',entries[0].intersectionRatio<.01),{threshold:.01}).observe(home);
 rainButton.addEventListener('click',()=>{effectsOn=!effectsOn;syncEffects();try{localStorage.setItem('rainy-home-rain',effectsOn?'on':'off');}catch{}});
 // 点击涟漪、弹起的小水珠和星星，关闭动效时一并停用。
 let lastBurst=0;

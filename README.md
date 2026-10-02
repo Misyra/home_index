@@ -60,3 +60,5 @@ src/config/characters.ts 集中管理人物图片、场景和台词。主页人�
 ## 可爱字体
 
 全站使用与 UPXUU 参考站相同的 Fredoka + Noto Sans SC 组合；英文和数字圆润，中文保持清晰，标题700字重、导航600字重。字体本站托管，中文子集在本地生成，合计约165KB。字体来源、许可证及重新生成方法见 FONTS.md。
+
+粒子计算、快速切歌、弹窗背景锁定和手机触摸范围的后续迭代见 PERFORMANCE.md。可用 Node 运行 scripts/music-race.test.mjs 验证播放状态冲突；scripts/particle-cost.mjs 使用Git内保存的原版渲染脚本对照运算计数。
