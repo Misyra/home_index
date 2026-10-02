@@ -1,44 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#eaf3fa"><meta name="description" content="雨间小屋，一个收集日常、灵感和美好去处的雨天导航页。">
-  <title>雨间小屋 · 把日子过成喜欢的样子</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23eaf3fa'/%3E%3Cpath d='M10 30a22 22 0 0 1 44 0Q43 23 32 30Q21 23 10 30Z' fill='%237ca98d'/%3E%3Cpath d='M32 13v35q0 10 9 3' fill='none' stroke='%23566e85' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
-</head>
-<body>
-  <div class="rain-layer" aria-hidden="true"></div>
-  <header class="site-header"><div class="header-inner">
-    <a class="brand" href="#home"><span class="brand-icon">☂</span><span>雨间小屋<small>RAINY LITTLE HOME</small></span></a>
-    <nav aria-label="主导航"><a class="active" href="#home">小屋首页</a><a href="#navigation">常用导航</a><button data-open="about">关于小屋</button></nav>
-    <button class="rain-switch" id="rain-switch" aria-label="切换小雨动效" aria-pressed="true"><span>☂</span><span class="switch-label">小雨模式</span><span class="switch-track"></span></button>
-  </div></header>
-  <main class="page" id="home">
-    <section class="welcome" aria-labelledby="welcome-title">
-      <div class="hero-art" role="img" aria-label="小白猫撑着绿色雨伞，在雨天的小水洼里散步"></div>
-      <div class="welcome-copy"><span class="eyebrow"><span class="status-dot"></span> 嘀嗒，欢迎来到我的小世界</span><h1 id="welcome-title">外面下雨了，<br>来小屋坐坐吧<span class="headline-dot">。</span></h1><p>一把小伞，一点喜欢，一些关于生活的碎碎念。<br>这里藏着我的日常，也藏着通往世界的小路。</p><div class="hero-actions"><button class="primary-button" data-open="journal">翻翻雨天手记 <span>↗</span></button><button class="sound-button" id="sound-button" aria-pressed="false"><span class="sound-symbol">♫</span><span class="sound-label">听听雨声</span></button></div><div class="handwritten">a little rain, a little joy.</div></div>
-      <div class="hero-stamp"><span>☁</span> 今日份的温柔，已送达</div>
-    </section>
-    <div class="content-layout">
-      <aside class="sidebar">
-        <section class="profile-card"><div class="avatar" aria-hidden="true">☂</div><span class="profile-kicker">小屋主人</span><h2>一个喜欢雨天的人</h2><p>慢慢生活，悄悄记录。<br>在普通日子里，收集小小的快乐。</p><div class="profile-tags"><span>雨天爱好者</span><span>生活记录员</span></div><div class="profile-divider"></div><div class="profile-socials"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="前往 GitHub">⌘</a><a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" aria-label="前往哔哩哔哩">▣</a><button data-open="about" aria-label="关于小屋">♡</button></div></section>
-        <section class="little-note"><span class="note-label">☁ 小屋便签</span><p>雨天不一定要赶路，<br>也可以等一朵花开。</p><span class="note-signature">给路过的你 ♡</span></section>
-        <section class="calendar-card"><span class="calendar-icon">◷</span><div><time id="today"></time><p>今天也要好好生活呀</p></div></section>
-      </aside>
-      <div class="main-content">
-        <section class="my-corners" aria-labelledby="corners-title"><div class="section-heading"><h2 id="corners-title"><span>⌂</span> 我的小小角落</h2><span class="section-caption">SOME PIECES OF ME</span></div><div class="corner-grid">
-          <button class="corner-card blue" data-open="journal"><span class="corner-icon">▤</span><span class="corner-title">雨天手记 <span>↗</span></span><span class="corner-description">把日常写成小小的故事</span><span class="corner-foot">LIFE & NOTES</span></button>
-          <button class="corner-card green" data-open="album"><span class="corner-icon">▧</span><span class="corner-title">光影相册 <span>↗</span></span><span class="corner-description">留住那些不想忘记的瞬间</span><span class="corner-foot">MOMENTS & MEMORIES</span></button>
-          <button class="corner-card peach" data-open="about"><span class="corner-icon">♡</span><span class="corner-title">关于小屋 <span>↗</span></span><span class="corner-description">很高兴，在这里遇见你</span><span class="corner-foot">A LITTLE ABOUT HERE</span></button>
-        </div></section>
-        <section class="navigation-section" id="navigation" aria-labelledby="navigation-title"><div class="section-heading"><h2 id="navigation-title"><span>✧</span> 常去的好地方</h2><span class="section-caption">MY LITTLE BOOKMARKS</span></div><div class="link-grid" id="link-grid"></div></section>
-        <section class="thoughts" aria-labelledby="thoughts-title"><div class="section-heading"><h2 id="thoughts-title"><span>☷</span> 碎碎念的角落</h2><button class="text-button" data-open="journal">翻开手记 <span>→</span></button></div><button class="thought-row" data-open="journal"><span class="thought-dot green-dot"></span><span class="thought-text">喜欢雨落在窗台上的声音，像世界在轻轻说晚安。</span><span class="thought-label">雨天心情</span></button><button class="thought-row" data-open="journal"><span class="thought-dot blue-dot"></span><span class="thought-text">今天的小确幸：一杯热茶，和一个不用着急的下午。</span><span class="thought-label">日常收集</span></button></section>
-      </div>
-    </div>
-    <div class="page-end"><span>☂</span><p>愿你走过的每一场雨，都有一把温柔的伞。</p><span>✧</span></div>
-  </main>
-  <footer><span>© <span id="year"></span> 雨间小屋</span><span>Made with a little rain & a lot of love <span class="footer-heart">♡</span></span><a href="#home">回到屋顶 ↑</a></footer>
-  <dialog id="detail-dialog" aria-label="小屋详情"><div class="dialog-top"><span>雨间小屋 / <span id="dialog-category"></span></span><button id="close-dialog" aria-label="关闭窗口">×</button></div><div id="dialog-content"></div></dialog>
-</body>
-</html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#edf6fb"><meta name="description" content="雨间小屋，一个可爱的雨天导航站。"><title>雨间小屋 · 小雨天导航</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23edf6fb'/%3E%3Cpath d='M12 36a11 11 0 0 1 8-20 14 14 0 0 1 26 4 9 9 0 0 1 2 18H18' fill='white' stroke='%238aa7bf' stroke-width='3'/%3E%3Ccircle cx='26' cy='29' r='2' fill='%23547186'/%3E%3Ccircle cx='39' cy='29' r='2' fill='%23547186'/%3E%3Cpath d='m30 34 3 2 3-2' fill='none' stroke='%23547186' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body><canvas id="rain-canvas" aria-hidden="true"></canvas><div class="sky" aria-hidden="true"><span class="cloud cloud-one">☁</span><span class="cloud cloud-two">☁</span><span class="cloud cloud-three">☁</span><span class="little-star star-one">✦</span><span class="little-star star-two">✧</span><span class="little-star star-three">✧</span></div>
+<header><a class="wordmark" href="#home">☂ <span>RAINY DAY</span></a><div class="weather-controls"><button id="sound-button" aria-label="播放雨声" aria-pressed="false" title="听听雨声">♫</button><button id="rain-switch" aria-label="切换雨天动效" aria-pressed="true" title="雨天动效开关">☂</button></div></header>
+<main id="home"><section class="intro" aria-labelledby="title"><div class="mascot-wrap"><button class="mascot-button" id="mascot-button" aria-label="和小雨打个招呼"><img id="mascot" src="rain-girl.png" alt="浅金发金色眼睛、红色兽耳兜帽，撑着蓝色雨伞的Q版少女"></button><span class="hello-bubble" aria-hidden="true">你好呀 ♡</span><span class="mascot-sparkle" aria-hidden="true">✧</span></div><p class="eyebrow">滴答滴答 · 欢迎你来</p><h1 id="title">雨间小屋<span class="title-flower" aria-hidden="true">✿</span></h1><p class="intro-description">一个小小的导航站，通往我喜欢的地方。</p></section><nav class="link-grid" id="link-grid" aria-label="常用网站导航"></nav><p class="little-message">把喜欢的地方，装进一场小雨里 <span>♡</span></p></main>
+<footer><span>☁ 好好生活，慢慢相遇。</span><span>雨间小屋 <span id="year"></span></span></footer><div class="greeting" id="greeting" role="status"></div></body></html>
