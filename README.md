@@ -39,3 +39,7 @@ CG最终提示词：Create a polished landscape anime CG of the same blonde ambe
 ## 昼夜与点击交互
 
 顶部月亮/太阳按钮切换日间与夜间模式，选择保存在本地；首次跟随系统主题。点击反馈包含双层水波、飞溅水珠与小星星。人物点击切换动作，明信片打开CG；已移除原有两个文字操作按钮。动效开关和系统减少动态效果均能停用这些动画。
+
+## 雨天相册
+
+新增洛茜与蓝发鱼尾女孩一起踩水花、共撑雨伞、放纸船的三张CG，保存于 dist/rain-cg-splash.png、dist/rain-cg-umbrella.png、dist/rain-cg-boats.png。与原有热茶CG一起通过首页明信片打开的相册查看，支持缩略图、前后按钮和键盘左右方向键。内置 image_gen 生成；完整最终提示词见 CG-PROMPTS.md。
