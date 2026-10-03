@@ -1,7 +1,7 @@
 {
   "index.html": {
-    "directBytes": 429225,
-    "compatBytes": 881928,
+    "directBytes": 430880,
+    "compatBytes": 883583,
     "pairs": {
       "assets/music-cover.avif": "assets/music-cover.png",
       "assets/rain-cg-boats-thumb.avif": "assets/rain-cg-boats-thumb.png",
@@ -16,8 +16,8 @@
       "icons/huaban.avif": "icons/huaban.png"
     },
     "files": {
-      "./index.html": 23180,
-      "./particles.html": 9344,
+      "./index.html": 23224,
+      "./particles.html": 9388,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -50,11 +50,11 @@
       "icons/neteasecloudmusic.svg": 1352,
       "icons/notion.svg": 993,
       "scripts/home.js": 4765,
-      "scripts/music.js": 6891,
+      "scripts/music.js": 7578,
       "scripts/pet.js": 2808,
       "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 51795,
+      "style.css": 52675,
       "typography.css": 1037
     },
     "scripts": [
@@ -87,15 +87,15 @@
     }
   },
   "particles.html": {
-    "directBytes": 708908,
-    "compatBytes": 882394,
+    "directBytes": 710563,
+    "compatBytes": 884049,
     "pairs": {
       "assets/music-cover.avif": "assets/music-cover.png",
       "assets/rossi-particle-portrait.avif": "assets/rossi-particle-portrait.png"
     },
     "files": {
-      "./index.html": 23180,
-      "./particles.html": 9344,
+      "./index.html": 23224,
+      "./particles.html": 9388,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
@@ -104,13 +104,13 @@
       "assets/rossi-particle-portrait.png": 333062,
       "cursors.css": 1401,
       "particles.css": 7260,
-      "scripts/music.js": 6891,
+      "scripts/music.js": 7578,
       "scripts/particle-data.js": 340666,
       "scripts/particles.js": 4788,
       "scripts/pet.js": 2808,
       "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 51795,
+      "style.css": 52675,
       "typography.css": 1037
     },
     "scripts": [
@@ -195,5 +195,5 @@
     "mon3tr-cursors/unavailable.cur": 2238
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 97.41
+  "homeReductionPercent": 97.4
 }
