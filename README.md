@@ -15,7 +15,7 @@ npm run preview
 
 ## 修改内容
 
-- src/pages/index.astro：首页人物、CG、顶部内容。
+- src/pages/index.astro：首页人物、CG、顶部内容与星雨洛茜入口。
 - src/pages/particles.astro：独立粒子页。
 - src/config/site.ts：导航名称、说明与地址。
 - src/config/music.ts：音乐、网易云歌单接口、默认音量。
