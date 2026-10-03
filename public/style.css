@@ -133,3 +133,11 @@ picture{display:contents}
 [data-theme=dark] .music-item-artist{color:#93a9bd}
 .music-panel{overflow-y:auto;max-height:min(560px,calc(100svh - 100px))}
 @media(max-width:580px){.music-list{max-height:140px}}
+.music-heading-actions{display:flex;align-items:center;gap:7px}
+.music-playlist{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .3s cubic-bezier(.2,.7,.2,1),opacity .22s}
+.music-playlist-inner{overflow:hidden;min-height:0}
+.music-panel.list-open .music-playlist{grid-template-rows:1fr;opacity:1}
+.music-panel.list-open #music-list-toggle{background:#d8eaf6;border-color:#bdd8e7;color:#4a7796}
+[data-theme=dark] .music-panel.list-open #music-list-toggle{background:#4f7192;border-color:#7799b4;color:#e7f3fb}
+[data-theme=dark] .music-item.current .music-item-artist{color:#c3d5e6}
+@media(prefers-reduced-motion:reduce){.music-playlist{transition:none}}
