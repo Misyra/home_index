@@ -23,7 +23,7 @@ npm run preview
 - public/scripts/home.js：24 条人物问候、姿势切换与 CG 弹窗。
 - public/style.css、public/particles.css：公共页面与独立粒子页样式。
 
-桌面导航为四列，窄屏为两列，极窄屏为一列。顶部按钮控制主题、音乐和动效。主题与音量保存在浏览器本地，首次欢迎按会话展示。
+导航为 GitHub 与博客两张卡片，桌面并排、极窄屏单列；增改在 src/config/site.ts 维护。顶部按钮控制主题、音乐和动效。主题与音量保存在浏览器本地，首次欢迎按会话展示。
 
 ## 音乐
 
