@@ -20,7 +20,7 @@ npm run preview
 - src/config/site.ts：导航名称、说明与地址。
 - src/config/music.ts：音乐、网易云歌单接口、默认音量。
 - src/components：导航、播放器、首次欢迎、页脚和背景。
-- public/scripts/home.js：24 条人物问候、姿势切换与 CG 弹窗，问候气泡带星雨洛茜入口。
+- public/scripts/home.js：24 条人物问候、姿势切换与 CG 弹窗；信封姿势的问候对话即星雨洛茜入口。
 - public/style.css、public/particles.css：公共页面与独立粒子页样式。
 
 导航为 GitHub 与博客两张卡片，桌面并排、极窄屏单列；增改在 src/config/site.ts 维护。顶部按钮控制主题、音乐和动效。主题与音量保存在浏览器本地，首次欢迎按会话展示。
