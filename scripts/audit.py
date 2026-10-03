@@ -27,6 +27,6 @@ for name in ['index.html','particles.html']:
 font_refs=re.findall(r'url\(["\']?(fonts/[^)"\']+)',(d/'typography.css').read_text(encoding='utf-8'))
 assert font_refs and all((d/n).is_file() for n in font_refs),'Missing local font'
 report['fontBytes']={n:(d/n).stat().st_size for n in font_refs}
-assets={p.name:p.stat().st_size for p in (d/'assets').glob('*')};report['assets']=assets;report['previousDirectBytes']=baseline['directBytes'];report['homeReductionPercent']=round((1-report['index.html']['directBytes']/baseline['directBytes'])*100,2)
+assets={p.relative_to(d/'assets').as_posix():p.stat().st_size for p in (d/'assets').rglob('*') if p.is_file()};report['assets']=assets;report['previousDirectBytes']=baseline['directBytes'];report['homeReductionPercent']=round((1-report['index.html']['directBytes']/baseline['directBytes'])*100,2)
 (r/'scripts/performance-result.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
 print(json.dumps({'previousDirectBytes':baseline['directBytes'],'homeDirectBytes':report['index.html']['directBytes'],'particleDirectBytes':report['particles.html']['directBytes'],'reductionPercent':report['homeReductionPercent'],'homeScripts':report['index.html']['scripts'],'assetBytes':assets},ensure_ascii=False))

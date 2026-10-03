@@ -1,9 +1,9 @@
 {
   "index.html": {
-    "directBytes": 531827,
+    "directBytes": 533772,
     "files": {
-      "./index.html": 21714,
-      "./particles.html": 9139,
+      "./index.html": 21921,
+      "./particles.html": 9346,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -18,6 +18,7 @@
       "assets/rossi-cg-lantern-thumb.webp": 31982,
       "assets/rossi-cg-letter-thumb.webp": 30716,
       "assets/rossi-cg-rainbow-thumb.webp": 33114,
+      "cursors.css": 1944,
       "icons/bilibili.svg": 1396,
       "icons/douban.svg": 325,
       "icons/github.svg": 837,
@@ -29,7 +30,7 @@
       "scripts/pet.js": 2730,
       "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 52143,
+      "style.css": 51730,
       "typography.css": 1037
     },
     "scripts": [
@@ -55,23 +56,24 @@
     }
   },
   "particles.html": {
-    "directBytes": 859073,
+    "directBytes": 860820,
     "files": {
-      "./index.html": 21714,
-      "./particles.html": 9139,
+      "./index.html": 21921,
+      "./particles.html": 9346,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
       "assets/music-cover.webp": 34764,
       "assets/rossi-particle-portrait.webp": 335418,
-      "particles.css": 7458,
+      "cursors.css": 1944,
+      "particles.css": 7260,
       "scripts/music.js": 6879,
       "scripts/particle-data.js": 340666,
       "scripts/particles.js": 4788,
       "scripts/pet.js": 2730,
       "scripts/site.js": 6671,
       "scripts/welcome.js": 1397,
-      "style.css": 52143,
+      "style.css": 51730,
       "typography.css": 1037
     },
     "scripts": [
@@ -89,9 +91,6 @@
   },
   "assets": {
     "apple-touch-icon.png": 26125,
-    "cursor-default.cur": 1994,
-    "cursor-hover.cur": 2334,
-    "cursor-pressed.cur": 1627,
     "favicon-16.png": 733,
     "favicon-180.png": 26125,
     "favicon-192.png": 28987,
@@ -124,8 +123,24 @@
     "rossi-pet-still.webp": 16972,
     "rossi-pose-lantern.webp": 92060,
     "rossi-pose-letter.webp": 93808,
-    "rossi-pose-rainbow.webp": 99182
+    "rossi-pose-rainbow.webp": 99182,
+    "w11-cursors/Agreement.txt": 570,
+    "w11-cursors/dark-beam.cur": 4286,
+    "w11-cursors/dark-help.cur": 4286,
+    "w11-cursors/dark-link.cur": 4286,
+    "w11-cursors/dark-move.cur": 4286,
+    "w11-cursors/dark-pointer.cur": 4286,
+    "w11-cursors/dark-precision.cur": 4286,
+    "w11-cursors/dark-unavailable.cur": 4286,
+    "w11-cursors/light-beam.cur": 4286,
+    "w11-cursors/light-help.cur": 4286,
+    "w11-cursors/light-link.cur": 4286,
+    "w11-cursors/light-move.cur": 4286,
+    "w11-cursors/light-pointer.cur": 4286,
+    "w11-cursors/light-precision.cur": 4286,
+    "w11-cursors/light-unavailable.cur": 4286,
+    "w11-cursors/README.txt": 387
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 96.79
+  "homeReductionPercent": 96.78
 }
