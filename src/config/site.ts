@@ -39,6 +39,7 @@ export const bookmarks=[
     "description": "收藏设计与视觉灵感",
     "url": "https://huaban.com/",
     "icon": "icons/huaban.png",
+    "iconAvif": "icons/huaban.avif",
     "color": "222,67,98"
   },
   {

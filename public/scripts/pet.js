@@ -7,7 +7,7 @@ function paint(n){current=n;ctx.clearRect(0,0,192,208);ctx.drawImage(sheet,(n%4)
 function canAnimate(){return ready&&!document.hidden&&Rainy.effectsOn&&!Rainy.reducedMotion.matches&&!document.body.classList.contains('music-open')&&!document.querySelector('#welcome-toast.visible');}
 function tick(){clearTimeout(timer);if(!canAnimate()){if(ready)paint(0);return;}timer=setTimeout(()=>{paint((current+1)%8);tick();},durations[current]);}
 function sync(){clearTimeout(timer);if(ready){paint(0);tick();}}
-sheet.onload=()=>{ready=true;pet.hidden=false;paint(0);tick();};sheet.src='assets/rossi-pet-sheet.webp';
+sheet.onload=()=>{ready=true;pet.hidden=false;paint(0);tick();};sheet.onerror=()=>{if(sheet.src.endsWith('.avif'))sheet.src='assets/rossi-pet-sheet.png';};sheet.src='assets/rossi-pet-sheet.avif';
 document.addEventListener('visibilitychange',sync);document.addEventListener('rainy-effects-change',sync);Rainy.reducedMotion.addEventListener('change',sync);
 const observer=new MutationObserver(sync);observer.observe(document.body,{attributes:true,attributeFilter:['class']});observer.observe(document.querySelector('#welcome-toast'),{attributes:true,attributeFilter:['class']});
 function clamp(x,y){const px=Math.max(8,Math.min(document.documentElement.clientWidth-pet.offsetWidth-8,x)),py=Math.max(8,Math.min(innerHeight-pet.offsetHeight-8,y));pet.style.left=`${px}px`;pet.style.top=`${py}px`;pet.style.right='auto';pet.style.bottom='auto';pet.classList.toggle('left-edge',px<210);pet.classList.toggle('top-edge',py<150);placed=true;}

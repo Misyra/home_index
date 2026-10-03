@@ -27,5 +27,7 @@ requests[1].resolve();await new Promise(resolve=>setImmediate(resolve));
 assert.equal(play.disabled,false);assert.equal(play.getAttribute('aria-label'),'暂停音乐');
 assert.match(query('#music-status').textContent,/正在播放/);
 query('#music-cover').src='https://unavailable.example/cover.webp';query('#music-cover').dispatchEvent(new Event('error'));
-assert.equal(query('#music-cover').src,'assets/music-cover.webp');
+assert.equal(query('#music-cover').src,'assets/music-cover.avif');
+query('#music-cover').dispatchEvent(new Event('error'));
+assert.equal(query('#music-cover').src,'assets/music-cover.png');
 console.log('PASS: rapid track change, stale promise isolation, and cover fallback');

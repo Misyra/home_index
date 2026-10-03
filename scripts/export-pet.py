@@ -11,11 +11,12 @@ for row in range(2):
   frame=Image.new('RGBA',(192,208));frame.alpha_composite(cell,((192-cell.width)//2,198-cell.height));frames.append(frame)
 sheet=Image.new('RGBA',(768,416))
 for i,frame in enumerate(frames):sheet.alpha_composite(frame,((i%4)*192,(i//4)*208))
-out=root/'public/assets';sheet.save(out/'rossi-pet-sheet.webp',quality=88,method=6);frames[0].save(out/'rossi-pet-still.webp',quality=88,method=6)
+out=root/'public/assets';sheet.save(out/'rossi-pet-sheet.png',optimize=True);frames[0].save(out/'rossi-pet-still.png',optimize=True)
+# AVIF 由 scripts/optimize-assets.mjs 从这两张 PNG 统一生成（页面优先 AVIF，PNG 回退）。
 palette=sheet.convert('RGB').quantize(colors=255,method=Image.Quantize.MEDIANCUT)
 gifs=[]
 for frame in frames:
  p=frame.convert('RGB').quantize(palette=palette,dither=Image.Dither.NONE);mask=frame.getchannel('A').point(lambda a:255 if a<100 else 0);p.paste(255,mask=mask);p.info['transparency']=255;gifs.append(p)
 gifs[0].save(out/'rossi-corner.gif',save_all=True,append_images=gifs[1:],duration=[1700,130,130,170,130,130,160,220],loop=0,disposal=2,transparency=255,optimize=False)
 check=Image.open(out/'rossi-corner.gif');assert check.n_frames==8 and check.size==(192,208)
-for file in ['rossi-pet-sheet.webp','rossi-corner.gif']:print(file,(out/file).stat().st_size)
+for file in ['rossi-pet-sheet.png','rossi-corner.gif']:print(file,(out/file).stat().st_size)

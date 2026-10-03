@@ -31,11 +31,11 @@ npm run preview
 
 ## 素材与性能
 
-原始插画保留在 assets/originals；public/assets 为 WebP 素材、缩略图、雨云 favicon 与三态卡通鼠标。scripts/optimize-assets.mjs 用于素材压缩，scripts/create-icons.py 导出 favicon/ICO/CUR。CG 大图点击后加载，音乐按需加载，粒子只在独立页面运行。动画在后台暂停，并响应减少动态效果设置。
+原始插画保留在 assets/originals；public/assets 同时输出 AVIF 与 PNG（页面优先 AVIF，PNG 作为回退），含缩略图、雨云 favicon 与三态卡通鼠标。scripts/optimize-assets.mjs 与 scripts/optimize-new-characters.mjs 生成双格式素材，scripts/image-formats.mjs 为共用画质口径，scripts/create-icons.py 导出 favicon/ICO/CUR。CG 大图点击后加载，音乐按需加载，粒子只在独立页面运行。动画在后台暂停，并响应减少动态效果设置。
 
-npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地链接、主页粒子资源隔离与文件体积；详细口径见 PERFORMANCE.md。
+npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地链接、AVIF/PNG 配对、主页粒子资源隔离与文件体积；详细口径见 docs/PERFORMANCE.md。
 
-插画使用内置 image_gen 生成。历史人物提示词见 CHARACTER-PROMPTS.md；CG、粒子和新图标提示词分别见 CG-PROMPTS.md、PARTICLE-PROMPT.md、ICON-PROMPT.md。导航品牌图标保留 Simple Icons 及花瓣官方图标。
+插画使用内置 image_gen 生成。历史人物提示词见 docs/CHARACTER-PROMPTS.md；CG、粒子和新图标提示词分别见 docs/CG-PROMPTS.md、docs/PARTICLE-PROMPT.md、docs/ICON-PROMPT.md。导航品牌图标保留 Simple Icons 及花瓣官方图标。
 
 ## 发布
 
@@ -43,7 +43,7 @@ npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地
 
 ## 角落洛茜与新版雨滴
 
-角落洛茜使用内置 image_gen 生成八帧，透明 GIF 位于 public/assets/rossi-corner.gif。网页使用同一组 WebP 帧在 192×208 canvas 上播放，显示为96×104px（手机76×83px），支持点击问候和拖动；后台、关闭动效、减少动态效果时暂停，打开播放器时避让。提示词见 PET-PROMPT.md。
+角落洛茜使用内置 image_gen 生成八帧，透明 GIF 位于 public/assets/rossi-corner.gif。网页使用同一组 AVIF/PNG 帧在 192×208 canvas 上播放，显示为96×104px（手机76×83px），支持点击问候和拖动；后台、关闭动效、减少动态效果时暂停，打开播放器时避让。提示词见 docs/PET-PROMPT.md。
 
 雨滴改为三层速度和透明度的细雨线，带轻微变动风向；水花与涟漪在雨滴实际落点出现，短时消退。数量上限110，涟漪上限18，保留30 FPS节奏限制和后台暂停。
 
@@ -55,10 +55,17 @@ npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地
 
 src/config/characters.ts 集中管理人物图片、场景和台词。主页人物按顺序循环五种动作，保留原24条问候，新动作使用场景专属台词。主页四张明信片打开相册；在相册点击大图、左右按钮、缩略图或按左右方向键切换七张CG，每张有三句不同台词，重复查看时轮换。图片载入成功后才一起更新图片、标题、台词，避免画面与内容错配。新大图与动作按需载入，原有CG均保留。
 
-新增插画与最终提示词见 NEW-CHARACTER-PROMPTS.md；scripts/optimize-new-characters.mjs 将新增原稿导出为WebP立绘、大图与缩略图。
+新增插画与最终提示词见 docs/NEW-CHARACTER-PROMPTS.md；scripts/optimize-new-characters.mjs 将新增原稿导出为 AVIF/PNG 立绘、大图与缩略图。
 
 ## 可爱字体
 
-全站使用与 UPXUU 参考站相同的 Fredoka + Noto Sans SC 组合；英文和数字圆润，中文保持清晰，标题700字重、导航600字重。字体本站托管，中文子集在本地生成，合计约165KB。字体来源、许可证及重新生成方法见 FONTS.md。
+全站使用与 UPXUU 参考站相同的 Fredoka + Noto Sans SC 组合；英文和数字圆润，中文保持清晰，标题700字重、导航600字重。字体本站托管，中文子集在本地生成，合计约165KB。字体来源、许可证及重新生成方法见 docs/FONTS.md。
 
-粒子计算、快速切歌、弹窗背景锁定和手机触摸范围的后续迭代见 PERFORMANCE.md。可用 Node 运行 scripts/music-race.test.mjs 验证播放状态冲突；scripts/particle-cost.mjs 使用Git内保存的原版渲染脚本对照运算计数。
+粒子计算、快速切歌、弹窗背景锁定和手机触摸范围的后续迭代见 docs/PERFORMANCE.md。可用 Node 运行 scripts/music-race.test.mjs 验证播放状态冲突；scripts/particle-cost.mjs 使用Git内保存的原版渲染脚本对照运算计数。
+
+## 目录
+
+- src/、public/：站点源码与静态素材（AVIF 优先，PNG 回退）。
+- assets/originals/：插画原稿；assets/fonts/：字体源文件。
+- scripts/：构建、素材与审计脚本；scripts/archive/：已完成的历史一次性脚本。
+- docs/：提示词、性能、字体与参考文档。
