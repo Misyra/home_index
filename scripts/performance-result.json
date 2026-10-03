@@ -1,9 +1,9 @@
 {
   "index.html": {
-    "directBytes": 533772,
+    "directBytes": 533776,
     "files": {
-      "./index.html": 21921,
-      "./particles.html": 9346,
+      "./index.html": 21923,
+      "./particles.html": 9348,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -56,10 +56,10 @@
     }
   },
   "particles.html": {
-    "directBytes": 860820,
+    "directBytes": 860824,
     "files": {
-      "./index.html": 21921,
-      "./particles.html": 9346,
+      "./index.html": 21923,
+      "./particles.html": 9348,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
