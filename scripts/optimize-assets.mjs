@@ -40,6 +40,6 @@ if (await fs.access(huaban).then(() => true, () => false)) {
 }
 
 // favicon 保持 PNG/ICO（浏览器平台兼容，不做 AVIF）
-for (const size of [16, 32, 64, 180, 192, 512]) await sharp(path.join(from, 'site-icon.png')).resize(size, size).png().toFile(path.join(to, `favicon-${size}.png`));
-await fs.copyFile(path.join(to, 'favicon-180.png'), path.join(to, 'apple-touch-icon.png'));
+for (const size of [16, 32, 64, 180, 192, 512]) await sharp(path.join(from, 'rossi-site-icon.png')).resize(size, size).png().toFile(path.join(to, `rossi-icon-${size}.png`));
+await fs.copyFile(path.join(to, 'rossi-icon-180.png'), path.join(to, 'rossi-apple-touch-icon.png'));
 console.log('Optimized image assets: AVIF + PNG pairs written');
