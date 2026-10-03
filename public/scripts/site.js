@@ -29,7 +29,8 @@ for(let i=0;i<2;i++)particle('click-spark',node=>{node.textContent=i?'✧':'♡'
 document.addEventListener('pointerdown',event=>{if(event.isPrimary&&event.button===0)clickBurst(event.clientX,event.clientY);});
 document.addEventListener('click',event=>{if(event.detail===0&&event.target instanceof Element){const target=event.target.closest('button,a');if(target){const rect=target.getBoundingClientRect();clickBurst(rect.x+rect.width/2,rect.y+rect.height/2);}}});
 const greeting=document.querySelector('#greeting');let greetingTimer;
-function showGreeting(message){if(!greeting)return;greeting.querySelector('.greeting-text').textContent=message;greeting.classList.add('show');clearTimeout(greetingTimer);greetingTimer=setTimeout(()=>greeting.classList.remove('show'),4200);}
+if(greeting){greeting.addEventListener('mouseenter',()=>clearTimeout(greetingTimer));greeting.addEventListener('mouseleave',()=>{clearTimeout(greetingTimer);greetingTimer=setTimeout(()=>greeting.classList.remove('show'),1600);});}
+function showGreeting(message){if(!greeting)return;greeting.querySelector('.greeting-text').textContent=message;greeting.classList.add('show');clearTimeout(greetingTimer);greetingTimer=setTimeout(()=>greeting.classList.remove('show'),6500);}
 // 昼夜主题：优先采用保存的选择，否则跟随系统。
 const themeButton=document.querySelector('#theme-button'),systemTheme=matchMedia('(prefers-color-scheme: dark)');let themePreference=null;try{const saved=localStorage.getItem('rainy-home-theme');if(saved==='dark'||saved==='light')themePreference=saved;}catch{}
 const moonIcon='<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/>';
