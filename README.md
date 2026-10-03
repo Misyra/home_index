@@ -31,7 +31,7 @@ npm run preview
 
 ## 素材与性能
 
-原始插画保留在 assets/originals；public/assets 同时输出 AVIF 与 PNG（页面优先 AVIF，PNG 作为回退），含缩略图、雨云 favicon 与三态卡通鼠标。scripts/optimize-assets.mjs 与 scripts/optimize-new-characters.mjs 生成双格式素材，scripts/image-formats.mjs 为共用画质口径，scripts/create-icons.py 导出 favicon/ICO/CUR。CG 大图点击后加载，音乐按需加载，粒子只在独立页面运行。动画在后台暂停，并响应减少动态效果设置。
+原始插画保留在 assets/originals；public/assets 同时输出 AVIF 与 PNG（页面优先 AVIF，PNG 作为回退），含缩略图、雨云 favicon 与 mon3tr 光标。scripts/optimize-assets.mjs 与 scripts/optimize-new-characters.mjs 生成双格式素材，scripts/image-formats.mjs 为共用画质口径，scripts/create-icons.py 导出 favicon/ICO，scripts/import-mon3tr-cursors.py 从原稿生成静态光标。CG 大图点击后加载，音乐按需加载，粒子只在独立页面运行。动画在后台暂停，并响应减少动态效果设置。
 
 npm run build 生成静态 HTML 并压缩 CSS/JS。scripts/audit.py 检查本地链接、AVIF/PNG 配对、主页粒子资源隔离与文件体积；详细口径见 docs/PERFORMANCE.md。
 

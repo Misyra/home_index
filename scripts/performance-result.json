@@ -1,7 +1,7 @@
 {
   "index.html": {
-    "directBytes": 429954,
-    "compatBytes": 882657,
+    "directBytes": 429225,
+    "compatBytes": 881928,
     "pairs": {
       "assets/music-cover.avif": "assets/music-cover.png",
       "assets/rain-cg-boats-thumb.avif": "assets/rain-cg-boats-thumb.png",
@@ -16,8 +16,8 @@
       "icons/huaban.avif": "icons/huaban.png"
     },
     "files": {
-      "./index.html": 23273,
-      "./particles.html": 9437,
+      "./index.html": 23180,
+      "./particles.html": 9344,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon-64.png": 5226,
@@ -41,7 +41,7 @@
       "assets/rossi-cg-letter-thumb.png": 68924,
       "assets/rossi-cg-rainbow-thumb.avif": 26597,
       "assets/rossi-cg-rainbow-thumb.png": 73717,
-      "cursors.css": 1944,
+      "cursors.css": 1401,
       "icons/bilibili.svg": 1396,
       "icons/douban.svg": 325,
       "icons/github.svg": 837,
@@ -87,22 +87,22 @@
     }
   },
   "particles.html": {
-    "directBytes": 709637,
-    "compatBytes": 883123,
+    "directBytes": 708908,
+    "compatBytes": 882394,
     "pairs": {
       "assets/music-cover.avif": "assets/music-cover.png",
       "assets/rossi-particle-portrait.avif": "assets/rossi-particle-portrait.png"
     },
     "files": {
-      "./index.html": 23273,
-      "./particles.html": 9437,
+      "./index.html": 23180,
+      "./particles.html": 9344,
       "assets/apple-touch-icon.png": 26125,
       "assets/favicon-32.png": 1883,
       "assets/favicon.ico": 6261,
       "assets/music-cover.avif": 17369,
       "assets/rossi-particle-portrait.avif": 200032,
       "assets/rossi-particle-portrait.png": 333062,
-      "cursors.css": 1944,
+      "cursors.css": 1401,
       "particles.css": 7260,
       "scripts/music.js": 6891,
       "scripts/particle-data.js": 340666,
@@ -185,23 +185,15 @@
     "rossi-pose-letter.png": 126996,
     "rossi-pose-rainbow.avif": 61743,
     "rossi-pose-rainbow.png": 126196,
-    "w11-cursors/Agreement.txt": 570,
-    "w11-cursors/dark-beam.cur": 4286,
-    "w11-cursors/dark-help.cur": 4286,
-    "w11-cursors/dark-link.cur": 4286,
-    "w11-cursors/dark-move.cur": 4286,
-    "w11-cursors/dark-pointer.cur": 4286,
-    "w11-cursors/dark-precision.cur": 4286,
-    "w11-cursors/dark-unavailable.cur": 4286,
-    "w11-cursors/light-beam.cur": 4286,
-    "w11-cursors/light-help.cur": 4286,
-    "w11-cursors/light-link.cur": 4286,
-    "w11-cursors/light-move.cur": 4286,
-    "w11-cursors/light-pointer.cur": 4286,
-    "w11-cursors/light-precision.cur": 4286,
-    "w11-cursors/light-unavailable.cur": 4286,
-    "w11-cursors/README.txt": 387
+    "mon3tr-cursors/help.cur": 2238,
+    "mon3tr-cursors/link.cur": 2238,
+    "mon3tr-cursors/move.cur": 2238,
+    "mon3tr-cursors/pointer.cur": 2238,
+    "mon3tr-cursors/precision.cur": 2238,
+    "mon3tr-cursors/README.txt": 259,
+    "mon3tr-cursors/text.cur": 2238,
+    "mon3tr-cursors/unavailable.cur": 2238
   },
   "previousDirectBytes": 16560565,
-  "homeReductionPercent": 97.4
+  "homeReductionPercent": 97.41
 }

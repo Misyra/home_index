@@ -1,22 +1,13 @@
-/* Windows 11 Cursors Concept HD v2.2 — Jepri Creations. See assets/w11-cursors/. */
+/* mon3tr 光标（同人免费素材，用户提供）— .ani 首帧静态化，见 assets/mon3tr-cursors/。 */
 @media (hover: hover) and (pointer: fine) {
   :root {
-    --cursor-default: url('assets/w11-cursors/light-pointer.cur') 3 9, default;
-    --cursor-link: url('assets/w11-cursors/light-link.cur') 13 7, pointer;
-    --cursor-text: url('assets/w11-cursors/light-beam.cur') 15 15, text;
-    --cursor-move: url('assets/w11-cursors/light-move.cur') 15 15, move;
-    --cursor-disabled: url('assets/w11-cursors/light-unavailable.cur') 15 15, not-allowed;
-    --cursor-precision: url('assets/w11-cursors/light-precision.cur') 15 15, crosshair;
-    --cursor-help: url('assets/w11-cursors/light-help.cur') 3 9, help;
-  }
-  :root[data-theme=dark] {
-    --cursor-default: url('assets/w11-cursors/dark-pointer.cur') 3 9, default;
-    --cursor-link: url('assets/w11-cursors/dark-link.cur') 13 7, pointer;
-    --cursor-text: url('assets/w11-cursors/dark-beam.cur') 15 15, text;
-    --cursor-move: url('assets/w11-cursors/dark-move.cur') 15 15, move;
-    --cursor-disabled: url('assets/w11-cursors/dark-unavailable.cur') 15 15, not-allowed;
-    --cursor-precision: url('assets/w11-cursors/dark-precision.cur') 15 15, crosshair;
-    --cursor-help: url('assets/w11-cursors/dark-help.cur') 3 9, help;
+    --cursor-default: url('assets/mon3tr-cursors/pointer.cur') 0 0, default;
+    --cursor-link: url('assets/mon3tr-cursors/link.cur') 1 1, pointer;
+    --cursor-text: url('assets/mon3tr-cursors/text.cur') 7 14, text;
+    --cursor-move: url('assets/mon3tr-cursors/move.cur') 15 15, move;
+    --cursor-disabled: url('assets/mon3tr-cursors/unavailable.cur') 16 16, not-allowed;
+    --cursor-precision: url('assets/mon3tr-cursors/precision.cur') 5 5, crosshair;
+    --cursor-help: url('assets/mon3tr-cursors/help.cur') 0 0, help;
   }
   html, body { cursor: var(--cursor-default); }
   :is(a, button, [role=button], select, input[type=range], input[type=checkbox], input[type=radio]),
